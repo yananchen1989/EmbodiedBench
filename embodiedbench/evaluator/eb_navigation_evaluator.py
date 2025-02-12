@@ -40,9 +40,9 @@ class EB_NavigationEvaluator():
     def evaluate_main(self):
 
         valid_eval_sets = self.config.get('eval_sets', ValidEvalSets)
-        valid_eval_sets = list(valid_eval_sets)
-        if type(valid_eval_sets) == list and len(valid_eval_sets) == 0:
-            valid_eval_sets = ValidEvalSets
+        self.eval_sets = list(valid_eval_sets)
+        if type(self.eval_sets) == list and len(self.eval_sets) == 0:
+            self.eval_sets = ValidEvalSets
             
         for eval_set in self.eval_sets:
             if self.env is not None:
@@ -83,7 +83,7 @@ class EB_NavigationEvaluator():
                     print(f"Planner Output Action: {action}")
                     reasoning = json.loads(reasoning)
                     if type(action) == list:
-                        for i, action_single in enumerate( action[:min(self.env._max_episode_steps - self.env._current_step, len(action))] ):
+                        for i, action_single in enumerate( action[:min(self.env._max_episode_steps - self.env._current_step + 1, len(action))] ):
                             if i==0:
                                 obs, reward, done, info = self.env.step(action_single,reasoning,1)
                             else:
