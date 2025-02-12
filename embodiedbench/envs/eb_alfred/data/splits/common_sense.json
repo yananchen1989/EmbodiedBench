@@ -1,0 +1,775 @@
+[
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_clean_then_place_in_recep-Ladle-None-DiningTable-4/trial_T20190909_164840_568811",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190909_164840_568811",
+        "task description": "Rinse off something for serving soup and move it to the table.",
+        "NL Steps": [
+            "find a ladle",
+            "pick up a ladle",
+            "find a sinkbasin",
+            "put down the ladle",
+            "find a ladle",
+            "pick up the ladle",
+            "find a diningtable",
+            "put down the ladle"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_with_movable_recep-Spoon-Plate-DiningTable-15/trial_T20190907_112652_334388",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190907_112652_334388",
+        "task description": "As you prepare for dinner, arrange an eating surface that will hold your food with a spoon in it on the kitchen table.",
+        "NL Steps": [
+            "find a spoon",
+            "pick up a spoon",
+            "find a plate",
+            "put down the spoon",
+            "pick up a plate",
+            "find a diningtable",
+            "put down the plate"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_and_place_simple-HandTowel-None-BathtubBasin-419/trial_T20190908_023400_293044",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190908_023400_293044",
+        "task description": "Position a soft absorbent fabric in a tub.",
+        "NL Steps": [
+            "find a handtowel",
+            "pick up a handtowel",
+            "find a bathtubbasin",
+            "put down the handtowel"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_and_place_simple-SprayBottle-None-Toilet-422/trial_T20190909_124835_952557",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190909_124835_952557",
+        "task description": "Keep a closable liquid container by placing it on the back of the toilet.",
+        "NL Steps": [
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a toilet",
+            "put down the spraybottle"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_with_movable_recep-ButterKnife-Cup-SinkBasin-7/trial_T20190908_233333_221307",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190908_233333_221307",
+        "task description": "Place a transparent beverage holder with a cutting tool for butter in it to the sink.",
+        "NL Steps": [
+            "find a cup",
+            "pick up a cup",
+            "put down the cup",
+            "find a butterknife",
+            "pick up a butterknife",
+            "find a cup",
+            "put down the butterknife"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "look_at_obj_in_light-RemoteControl-None-FloorLamp-218/trial_T20190907_164342_432289",
+        "task type": "look_at_obj_in_light",
+        "task id": "trial_T20190907_164342_432289",
+        "task description": "Pick up a device for changing channels and turn on a lamp.",
+        "NL Steps": [
+            "find a remotecontrol",
+            "pick up a remotecontrol",
+            "find a floorlamp",
+            "turn on the floorlamp"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_clean_then_place_in_recep-Spatula-None-DiningTable-4/trial_T20190909_002804_564168",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190909_002804_564168",
+        "task description": "During a cooking session, keep a clean flipping tool on a wooden table.",
+        "NL Steps": [
+            "find a spatula",
+            "pick up a spatula",
+            "find a sinkbasin",
+            "put down the spatula",
+            "find a spatula",
+            "pick up the spatula",
+            "find a diningtable",
+            "put down the spatula"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "look_at_obj_in_light-Pillow-None-FloorLamp-223/trial_T20190906_201007_149137",
+        "task type": "look_at_obj_in_light",
+        "task id": "trial_T20190906_201007_149137",
+        "task description": "Hold a soft cushion close while turning on the lamp",
+        "NL Steps": [
+            "find a pillow",
+            "pick up a pillow",
+            "find a floorlamp",
+            "turn on the floorlamp"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_two_obj_and_place-CD-None-Drawer-304/trial_T20190907_230232_832893",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190907_230232_832893",
+        "task description": "After organizing your music collection, relocate two music discs to the bottom drawer of the desk.",
+        "NL Steps": [
+            "find a cd",
+            "pick up a cd",
+            "find a drawer",
+            "put down the cd",
+            "find a cd",
+            "pick up a cd",
+            "find a drawer",
+            "put down the cd"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_clean_then_place_in_recep-Lettuce-None-CounterTop-16/trial_T20190909_051630_092360",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190909_051630_092360",
+        "task description": "Rinse off leafy greens and put them down on the countertop.",
+        "NL Steps": [
+            "find a lettuce",
+            "pick up a lettuce",
+            "find a sinkbasin",
+            "put down the lettuce",
+            "find a lettuce",
+            "pick up the lettuce",
+            "find a countertop",
+            "put down the lettuce"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_and_place_with_movable_recep-Watch-Bowl-Shelf-326/trial_T20190909_031836_927615",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190909_031836_927615",
+        "task description": "Put a container for rice with a watch in it on the shelf.",
+        "NL Steps": [
+            "find a bowl",
+            "pick up a bowl",
+            "find a shelf",
+            "put down the bowl",
+            "pick up a watch",
+            "put down the watch"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_simple-Bowl-None-CoffeeTable-201/trial_T20190907_171639_045329",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190907_171639_045329",
+        "task description": "Place a round eating vessel on the coffee table.",
+        "NL Steps": [
+            "find a bowl",
+            "pick up a bowl",
+            "find a coffeetable",
+            "put down the bowl"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_and_place_simple-Newspaper-None-Sofa-224/trial_T20190909_111324_949106",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190909_111324_949106",
+        "task description": "Lay out the day's reading material on the couch.",
+        "NL Steps": [
+            "find a newspaper",
+            "pick up a newspaper",
+            "find a sofa",
+            "put down the newspaper"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_clean_then_place_in_recep-LettuceSliced-None-CounterTop-19/trial_T20190909_005709_232606",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190909_005709_232606",
+        "task description": "Place a clean slice of green leaf on the counter",
+        "NL Steps": [
+            "find a butterknife",
+            "pick up a butterknife",
+            "find a lettuce",
+            "slice the lettuce",
+            "find a countertop",
+            "put down the butterknife",
+            "find a lettuce",
+            "pick up a lettuce",
+            "find a sinkbasin",
+            "put down the lettuce",
+            "find a lettuce",
+            "pick up the lettuce",
+            "find a countertop",
+            "put down the lettuce"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "look_at_obj_in_light-KeyChain-None-FloorLamp-204/trial_T20190909_030908_402835",
+        "task type": "look_at_obj_in_light",
+        "task id": "trial_T20190909_030908_402835",
+        "task description": "Look at a set of jangling items under a lit tall lamp.",
+        "NL Steps": [
+            "find a keychain",
+            "pick up a keychain",
+            "find a floorlamp",
+            "turn on the floorlamp"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_two_obj_and_place-Book-None-Desk-302/trial_T20190906_181233_363875",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190906_181233_363875",
+        "task description": "Relocate two items containing written information to a piece of furniture for studying in a sleeping area.",
+        "NL Steps": [
+            "find a book",
+            "pick up a book",
+            "find a desk",
+            "put down the book",
+            "find a book",
+            "pick up a book",
+            "find a desk",
+            "put down the book"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_simple-Mug-None-SideTable-329/trial_T20190909_032318_169393",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190909_032318_169393",
+        "task description": "After enjoying your morning coffee, move the beverage holder to the nightstand",
+        "NL Steps": [
+            "find a mug",
+            "pick up a mug",
+            "find a sidetable",
+            "put down the mug"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_two_obj_and_place-KeyChain-None-Shelf-207/trial_T20190909_131701_482365",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190909_131701_482365",
+        "task description": "Put two sets of jangling items carefully on the shelf.",
+        "NL Steps": [
+            "find a keychain",
+            "pick up a keychain",
+            "find a shelf",
+            "put down the keychain",
+            "find a keychain",
+            "pick up a keychain",
+            "find a shelf",
+            "put down the keychain"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_clean_then_place_in_recep-Ladle-None-DiningTable-4/trial_T20190909_164840_568811",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190909_164840_568811",
+        "task description": "Get the soup serving tool, wash it, return it to wooden table",
+        "NL Steps": [
+            "find a ladle",
+            "pick up a ladle",
+            "find a sinkbasin",
+            "put down the ladle",
+            "find a ladle",
+            "pick up the ladle",
+            "find a diningtable",
+            "put down the ladle"
+        ]
+    },
+    {
+        "repeat_idx": 3,
+        "full_scene_name": "pick_clean_then_place_in_recep-AppleSliced-None-DiningTable-27/trial_T20190907_151802_277016",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190907_151802_277016",
+        "task description": "Put a clean slice of fruit famously known as Snow White's poisonous temptation on the table.",
+        "NL Steps": [
+            "find a knife",
+            "pick up a knife",
+            "find a apple",
+            "slice the apple",
+            "find a diningtable",
+            "put down the knife",
+            "find a apple",
+            "pick up a apple",
+            "find a sinkbasin",
+            "put down the apple",
+            "find a apple",
+            "pick up the apple",
+            "find a diningtable",
+            "put down the apple"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "look_at_obj_in_light-RemoteControl-None-FloorLamp-213/trial_T20190907_070857_687585",
+        "task type": "look_at_obj_in_light",
+        "task id": "trial_T20190907_070857_687585",
+        "task description": "Turn on the lamp while holding the device for changing channels.",
+        "NL Steps": [
+            "find a remotecontrol",
+            "pick up a remotecontrol",
+            "find a floorlamp",
+            "turn on the floorlamp"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_simple-Book-None-Sofa-229/trial_T20190907_042856_259139",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190907_042856_259139",
+        "task description": "Move the bound collection of narratives to the couch.",
+        "NL Steps": [
+            "find a book",
+            "pick up a book",
+            "find a sofa",
+            "put down the book"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_with_movable_recep-Pencil-Bowl-Dresser-311/trial_T20190909_002301_857761",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190909_002301_857761",
+        "task description": "Put the round eating vessel with a graphite-writing tool in it on the TV stand.",
+        "NL Steps": [
+            "find a pencil",
+            "pick up a pencil",
+            "put down the pencil",
+            "pick up a bowl",
+            "find a dresser",
+            "put down the bowl"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_clean_then_place_in_recep-TomatoSliced-None-Microwave-20/trial_T20190918_161337_246067",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190918_161337_246067",
+        "task description": "Place a slice of rinsed fruit often used in sauces and salads in the microwave.",
+        "NL Steps": [
+            "find a tomato",
+            "pick up a tomato",
+            "find a sinkbasin",
+            "put down the tomato",
+            "pick up a knife",
+            "slice the tomato",
+            "put down the knife",
+            "pick up a tomato",
+            "put down the knife",
+            "find a knife",
+            "pick up the knife",
+            "find a microwave",
+            "put down the tomato"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_with_movable_recep-ButterKnife-Cup-DiningTable-23/trial_T20190908_233553_192059",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190908_233553_192059",
+        "task description": "Position a transparent drinking vessel with a cutting tool for butter in it on the table.",
+        "NL Steps": [
+            "find a butterknife",
+            "pick up a butterknife",
+            "find a cup",
+            "put down the butterknife",
+            "pick up a cup",
+            "find a diningtable",
+            "put down the cup"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_clean_then_place_in_recep-Lettuce-None-Fridge-19/trial_T20190908_100138_446072",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190908_100138_446072",
+        "task description": "Place washed leafy green vegetable in a receptacle that can keep it fresh for several days.",
+        "NL Steps": [
+            "find a lettuce",
+            "pick up a lettuce",
+            "find a sinkbasin",
+            "put down the lettuce",
+            "find a lettuce",
+            "pick up the lettuce",
+            "find a fridge",
+            "put down the lettuce"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "look_at_obj_in_light-RemoteControl-None-FloorLamp-213/trial_T20190907_070857_687585",
+        "task type": "look_at_obj_in_light",
+        "task id": "trial_T20190907_070857_687585",
+        "task description": "Activate the source of artificial light while holding the device used for controlling electronics from a distance.",
+        "NL Steps": [
+            "find a remotecontrol",
+            "pick up a remotecontrol",
+            "find a floorlamp",
+            "turn on the floorlamp"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_two_obj_and_place-Book-None-Desk-313/trial_T20190908_125930_920681",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190908_125930_920681",
+        "task description": "Move two books from the place where you sleep to the desk.",
+        "NL Steps": [
+            "find a book",
+            "pick up a book",
+            "find a desk",
+            "put down the book",
+            "find a book",
+            "pick up a book",
+            "find a desk",
+            "put down the book"
+        ]
+    },
+    {
+        "repeat_idx": 5,
+        "full_scene_name": "pick_and_place_with_movable_recep-AppleSliced-Pot-Fridge-24/trial_T20190909_064046_163660",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190909_064046_163660",
+        "task description": "Put a pan with a red crisp fruit in it in the fridge.",
+        "NL Steps": [
+            "find a butterknife",
+            "pick up a butterknife",
+            "find a apple",
+            "slice the apple",
+            "put down the butterknife",
+            "pick up a apple",
+            "find a pot",
+            "put down the apple",
+            "pick up a pot",
+            "find a fridge",
+            "put down the pot"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_simple-CellPhone-None-Bed-324/trial_T20190907_233817_198528",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190907_233817_198528",
+        "task description": "put your communication device on the place where you sleep.",
+        "NL Steps": [
+            "find a cellphone",
+            "pick up a cellphone",
+            "find a bed",
+            "put down the cellphone"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_and_place_with_movable_recep-ButterKnife-Cup-DiningTable-23/trial_T20190908_233553_192059",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190908_233553_192059",
+        "task description": "Put a transparent drinking vessel with a butter knife in it on the kitchen island.",
+        "NL Steps": [
+            "find a butterknife",
+            "pick up a butterknife",
+            "find a cup",
+            "put down the butterknife",
+            "pick up a cup",
+            "find a diningtable",
+            "put down the cup"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_with_movable_recep-Spatula-Pan-CounterTop-17/trial_T20190906_194903_710920",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190906_194903_710920",
+        "task description": "Place a cooking container with a flipping tool in it on the kitchen counter.",
+        "NL Steps": [
+            "find a spatula",
+            "pick up a spatula",
+            "find a pan",
+            "put down the spatula",
+            "pick up a pan",
+            "find a countertop",
+            "put down the pan"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_and_place_simple-HandTowel-None-BathtubBasin-408/trial_T20190908_053502_505422",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190908_053502_505422",
+        "task description": "Carry something absorbent to the bathtub.",
+        "NL Steps": [
+            "find a handtowel",
+            "pick up a handtowel",
+            "find a bathtubbasin",
+            "put down the handtowel"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_clean_then_place_in_recep-DishSponge-None-BathtubBasin-427/trial_T20190906_234735_610018",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190906_234735_610018",
+        "task description": "Place a cleaned scouring item in a bathtub.",
+        "NL Steps": [
+            "find a dishsponge",
+            "pick up a dishsponge",
+            "find a sinkbasin",
+            "put down the dishsponge",
+            "find a dishsponge",
+            "pick up the dishsponge",
+            "find a bathtubbasin",
+            "put down the dishsponge"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_clean_then_place_in_recep-Ladle-None-CounterTop-8/trial_T20190909_121908_219603",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190909_121908_219603",
+        "task description": "Place a cleaned soup serving tool on a counter.",
+        "NL Steps": [
+            "find a ladle",
+            "pick up a ladle",
+            "find a sinkbasin",
+            "put down the ladle",
+            "find a ladle",
+            "pick up the ladle",
+            "find a countertop",
+            "put down the ladle"
+        ]
+    },
+    {
+        "repeat_idx": 4,
+        "full_scene_name": "pick_and_place_with_movable_recep-Spoon-Cup-SinkBasin-6/trial_T20190907_054459_336922",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190907_054459_336922",
+        "task description": "Move a cup with a stirring tool in it to the sink.",
+        "NL Steps": [
+            "find a cup",
+            "pick up a cup",
+            "find a sinkbasin",
+            "put down the cup"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "look_at_obj_in_light-WateringCan-None-FloorLamp-212/trial_T20190907_034437_413802",
+        "task type": "look_at_obj_in_light",
+        "task id": "trial_T20190907_034437_413802",
+        "task description": "Illuminate the tall standing light fixture while holding the container used for watering plants.",
+        "NL Steps": [
+            "find a wateringcan",
+            "pick up a wateringcan",
+            "find a floorlamp",
+            "turn on the floorlamp"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_clean_then_place_in_recep-DishSponge-None-BathtubBasin-427/trial_T20190906_234735_610018",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190906_234735_610018",
+        "task description": "Place a wet scouring item inside the bathtub.",
+        "NL Steps": [
+            "find a dishsponge",
+            "pick up a dishsponge",
+            "find a sinkbasin",
+            "put down the dishsponge",
+            "find a dishsponge",
+            "pick up the dishsponge",
+            "find a bathtubbasin",
+            "put down the dishsponge"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_and_place_simple-Knife-None-SideTable-3/trial_T20190918_184236_557252",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190918_184236_557252",
+        "task description": "Place a cutting tool on the microwave oven table",
+        "NL Steps": [
+            "find a knife",
+            "pick up a knife",
+            "find a sidetable",
+            "put down the knife"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_and_place_simple-Book-None-Sofa-229/trial_T20190907_042856_259139",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190907_042856_259139",
+        "task description": "Move the book from the table to the large comfortable lounging spot.",
+        "NL Steps": [
+            "find a book",
+            "pick up a book",
+            "find a sofa",
+            "put down the book"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_and_place_simple-Box-None-Dresser-224/trial_T20190907_164104_229696",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190907_164104_229696",
+        "task description": "Take the paper container from the couch, and place it on the dresser.",
+        "NL Steps": [
+            "find a box",
+            "pick up a box",
+            "find a dresser",
+            "put down the box"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_two_obj_and_place-Book-None-Desk-313/trial_T20190908_125930_920681",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190908_125930_920681",
+        "task description": "Place two bound volumes of knowledge on the desk.",
+        "NL Steps": [
+            "find a book",
+            "pick up a book",
+            "find a desk",
+            "put down the book",
+            "find a book",
+            "pick up a book",
+            "find a desk",
+            "put down the book"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_simple-Knife-None-SideTable-3/trial_T20190918_184236_557252",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190918_184236_557252",
+        "task description": "Set the bladed utensil on the small table.",
+        "NL Steps": [
+            "find a knife",
+            "pick up a knife",
+            "find a sidetable",
+            "put down the knife"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_with_movable_recep-Pen-Mug-Dresser-311/trial_T20190909_154212_097094",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190909_154212_097094",
+        "task description": "Place a mug with an ink-writing instrument in it on the dresser.",
+        "NL Steps": [
+            "find a pen",
+            "pick up a pen",
+            "put down the pen",
+            "pick up a mug",
+            "find a dresser",
+            "put down the mug"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_clean_then_place_in_recep-Plate-None-CounterTop-19/trial_T20190908_212725_836398",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190908_212725_836398",
+        "task description": "putting a cleaned flat eating surface on a counter.",
+        "NL Steps": [
+            "find a plate",
+            "pick up a plate",
+            "find a sinkbasin",
+            "put down the plate",
+            "find a plate",
+            "pick up the plate",
+            "find a countertop",
+            "put down the plate"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_clean_then_place_in_recep-SoapBar-None-Toilet-428/trial_T20190907_041436_588106",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190907_041436_588106",
+        "task description": "Put a bar of cleaned soap on the back of the porcelain seat in the bathroom.",
+        "NL Steps": [
+            "find a soapbar",
+            "pick up a soapbar",
+            "find a sinkbasin",
+            "put down the soapbar",
+            "find a soapbar",
+            "pick up the soapbar",
+            "find a toilet",
+            "put down the soapbar"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "look_at_obj_in_light-WateringCan-None-FloorLamp-212/trial_T20190907_034437_413802",
+        "task type": "look_at_obj_in_light",
+        "task id": "trial_T20190907_034437_413802",
+        "task description": "The room is dark; can you help me turn something on? At the same time, hold a water can.",
+        "NL Steps": [
+            "find a wateringcan",
+            "pick up a wateringcan",
+            "find a floorlamp",
+            "turn on the floorlamp"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_two_obj_and_place-Spatula-None-Drawer-13/trial_T20190908_183331_203888",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190908_183331_203888",
+        "task description": "Put two flipping tools in the drawer.",
+        "NL Steps": [
+            "find a spatula",
+            "pick up a spatula",
+            "find a drawer",
+            "put down the spatula",
+            "find a spatula",
+            "pick up a spatula",
+            "find a drawer",
+            "put down the spatula"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "look_at_obj_in_light-KeyChain-None-DeskLamp-327/trial_T20190906_202601_548273",
+        "task type": "look_at_obj_in_light",
+        "task id": "trial_T20190906_202601_548273",
+        "task description": "Examine the keys under the illumination provided by one fixture on the table.",
+        "NL Steps": [
+            "find a keychain",
+            "pick up a keychain",
+            "find a desklamp",
+            "turn on the desklamp"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_and_place_with_movable_recep-Watch-Bowl-Shelf-326/trial_T20190909_031836_927615",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190909_031836_927615",
+        "task description": "Place a timekeeping device in a round container on the shelf.",
+        "NL Steps": [
+            "find a bowl",
+            "pick up a bowl",
+            "find a shelf",
+            "put down the bowl",
+            "pick up a watch",
+            "put down the watch"
+        ]
+    }
+]

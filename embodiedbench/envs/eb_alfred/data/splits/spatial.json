@@ -1,0 +1,774 @@
+[
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_clean_then_place_in_recep-Ladle-None-DiningTable-27/trial_T20190911_131350_027076",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190911_131350_027076",
+        "task description": "wash the ladle and put it back on the table",
+        "NL Steps": [
+            "find a ladle",
+            "pick up a ladle",
+            "find a sinkbasin",
+            "put down the ladle",
+            "find a ladle",
+            "pick up the ladle",
+            "find a diningtable",
+            "put down the ladle"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_two_obj_and_place-SprayBottle-None-Toilet-429/trial_T20190907_033843_707544",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190907_033843_707544",
+        "task description": "Place spray bottles on the back of a toilet",
+        "NL Steps": [
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a toilet",
+            "put down the spraybottle",
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a toilet",
+            "put down the spraybottle"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_clean_then_place_in_recep-Mug-None-CoffeeMachine-26/trial_T20190907_233056_022802",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190907_233056_022802",
+        "task description": "Put a clean mug under the coffee maker.",
+        "NL Steps": [
+            "find a mug",
+            "pick up a mug",
+            "find a sinkbasin",
+            "put down the mug",
+            "find a mug",
+            "pick up the mug",
+            "find a coffeemachine",
+            "put down the mug"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_and_place_simple-SoapBar-None-Drawer-409/trial_T20190909_100455_031300",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190909_100455_031300",
+        "task description": "Place soap inside the drawer to the right of the sink.",
+        "NL Steps": [
+            "find a soapbar",
+            "pick up a soapbar",
+            "find a drawer",
+            "put down the soapbar"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_with_movable_recep-Pen-Mug-Desk-309/trial_T20190909_023218_500741",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190909_023218_500741",
+        "task description": "place a cup with a pen in it on top of the cabinet",
+        "NL Steps": [
+            "find a pen",
+            "pick up a pen",
+            "find a mug",
+            "put down the pen",
+            "pick up a mug",
+            "find a desk",
+            "put down the mug"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_and_place_simple-SprayBottle-None-Cabinet-413/trial_T20190907_114903_411834",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190907_114903_411834",
+        "task description": "Put a spray bottle into a cabinet under the sink.",
+        "NL Steps": [
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a cabinet",
+            "put down the spraybottle"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_simple-SprayBottle-None-Cabinet-413/trial_T20190907_114903_411834",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190907_114903_411834",
+        "task description": "place a spray bottle in the bottom left bathroom cabinet",
+        "NL Steps": [
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a cabinet",
+            "put down the spraybottle"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_and_place_simple-SprayBottle-None-Toilet-422/trial_T20190909_124835_952557",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190909_124835_952557",
+        "task description": "put a spray bottle on top of the water tank",
+        "NL Steps": [
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a toilet",
+            "put down the spraybottle"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_two_obj_and_place-SoapBar-None-Toilet-417/trial_T20190908_191330_157502",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190908_191330_157502",
+        "task description": "Organize the bars of soap on top of the toilet tank.",
+        "NL Steps": [
+            "find a soapbar",
+            "pick up a soapbar",
+            "find a toilet",
+            "put down the soapbar",
+            "find a soapbar",
+            "pick up a soapbar",
+            "find a toilet",
+            "put down the soapbar"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_and_place_with_movable_recep-AppleSliced-Pan-CounterTop-8/trial_T20190909_002950_338362",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190909_002950_338362",
+        "task description": "To place an apple in a pan on the back of the counter as well as cut it into three slices.",
+        "NL Steps": [
+            "find a pan",
+            "pick up a pan",
+            "find a countertop",
+            "put down the pan",
+            "pick up a apple",
+            "put down the apple",
+            "find a knife",
+            "pick up a knife",
+            "find a apple",
+            "slice the apple"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_and_place_with_movable_recep-Spatula-Pan-CounterTop-17/trial_T20190906_194903_710920",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190906_194903_710920",
+        "task description": "Plan a pan with a spatula in it down on the counter to the right of the toaster.",
+        "NL Steps": [
+            "find a spatula",
+            "pick up a spatula",
+            "find a pan",
+            "put down the spatula",
+            "pick up a pan",
+            "find a countertop",
+            "put down the pan"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_and_place_with_movable_recep-Knife-Mug-DiningTable-27/trial_T20190913_113749_095745",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190913_113749_095745",
+        "task description": "Put a mug with a knife in it on the table to the left of the sink.",
+        "NL Steps": [
+            "find a knife",
+            "pick up a knife",
+            "put down the knife",
+            "pick up a mug",
+            "find a diningtable",
+            "put down the mug"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "look_at_obj_in_light-KeyChain-None-DeskLamp-327/trial_T20190906_202601_548273",
+        "task type": "look_at_obj_in_light",
+        "task id": "trial_T20190906_202601_548273",
+        "task description": "Inspect keys near a lit lamp.",
+        "NL Steps": [
+            "find a keychain",
+            "pick up a keychain",
+            "find a desklamp",
+            "turn on the desklamp"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_two_obj_and_place-SprayBottle-None-Cabinet-407/trial_T20190907_144556_144188",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190907_144556_144188",
+        "task description": "Move the spray bottles to the cabinet under the sink. ",
+        "NL Steps": [
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a cabinet",
+            "put down the spraybottle",
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a cabinet",
+            "put down the spraybottle"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_two_obj_and_place-SprayBottle-None-Cabinet-407/trial_T20190907_144556_144188",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190907_144556_144188",
+        "task description": "Put two bottles in a cabinet under the sink.",
+        "NL Steps": [
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a cabinet",
+            "put down the spraybottle",
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a cabinet",
+            "put down the spraybottle"
+        ]
+    },
+    {
+        "repeat_idx": 3,
+        "full_scene_name": "pick_two_obj_and_place-SprayBottle-None-Cabinet-407/trial_T20190907_144556_144188",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190907_144556_144188",
+        "task description": "Put two spray bottles in the cabinet under the sink against the wall.",
+        "NL Steps": [
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a cabinet",
+            "put down the spraybottle",
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a cabinet",
+            "put down the spraybottle"
+        ]
+    },
+    {
+        "repeat_idx": 5,
+        "full_scene_name": "pick_two_obj_and_place-SprayBottle-None-Cabinet-407/trial_T20190907_144556_144188",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190907_144556_144188",
+        "task description": "To move two spray bottles to the cabinet below the sink on the right side. ",
+        "NL Steps": [
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a cabinet",
+            "put down the spraybottle",
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a cabinet",
+            "put down the spraybottle"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_clean_then_place_in_recep-Lettuce-None-CounterTop-16/trial_T20190909_051630_092360",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190909_051630_092360",
+        "task description": "Retrieve green vegetable from table, wash it in the sink, put it on the right side counter",
+        "NL Steps": [
+            "find a lettuce",
+            "pick up a lettuce",
+            "find a sinkbasin",
+            "put down the lettuce",
+            "find a lettuce",
+            "pick up the lettuce",
+            "find a countertop",
+            "put down the lettuce"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_clean_then_place_in_recep-Lettuce-None-CounterTop-16/trial_T20190909_051630_092360",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190909_051630_092360",
+        "task description": "Put cleaned lettuce on the counter, right of the sink. ",
+        "NL Steps": [
+            "find a lettuce",
+            "pick up a lettuce",
+            "find a sinkbasin",
+            "put down the lettuce",
+            "find a lettuce",
+            "pick up the lettuce",
+            "find a countertop",
+            "put down the lettuce"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "look_at_obj_in_light-BaseballBat-None-DeskLamp-303/trial_T20190907_060414_846460",
+        "task type": "look_at_obj_in_light",
+        "task id": "trial_T20190907_060414_846460",
+        "task description": "Examine the baseball bat next to the light of the lamp on the desk.",
+        "NL Steps": [
+            "find a baseballbat",
+            "pick up a baseballbat",
+            "find a desklamp",
+            "turn on the desklamp"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_clean_then_place_in_recep-SoapBar-None-Cabinet-402/trial_T20190908_055221_984342",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190908_055221_984342",
+        "task description": "Put a clean bar of soap under the sink. ",
+        "NL Steps": [
+            "find a soapbar",
+            "pick up a soapbar",
+            "find a sinkbasin",
+            "put down the soapbar",
+            "find a soapbar",
+            "pick up the soapbar",
+            "find a cabinet",
+            "put down the soapbar"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_clean_then_place_in_recep-SoapBar-None-Cabinet-402/trial_T20190908_055221_984342",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190908_055221_984342",
+        "task description": "drop a wet soap in the cupboard under the sink",
+        "NL Steps": [
+            "find a soapbar",
+            "pick up a soapbar",
+            "find a sinkbasin",
+            "put down the soapbar",
+            "find a soapbar",
+            "pick up the soapbar",
+            "find a cabinet",
+            "put down the soapbar"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_and_place_with_movable_recep-Fork-Cup-DiningTable-23/trial_T20190906_205421_980666",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190906_205421_980666",
+        "task description": "Place a glass with a fork in it on the table in front of a glass pitcher.",
+        "NL Steps": [
+            "find a fork",
+            "pick up a fork",
+            "find a cup",
+            "put down the fork",
+            "pick up a cup",
+            "find a diningtable",
+            "put down the cup"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_two_obj_and_place-ToiletPaper-None-Drawer-423/trial_T20190907_111251_461099",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190907_111251_461099",
+        "task description": "To take the toilet paper on top of the toilet and place it in a drawer. ",
+        "NL Steps": [
+            "find a toiletpaper",
+            "pick up a toiletpaper",
+            "find a drawer",
+            "put down the toiletpaper",
+            "find a toiletpaper",
+            "pick up a toiletpaper",
+            "find a drawer",
+            "put down the toiletpaper"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_two_obj_and_place-ToiletPaper-None-Drawer-423/trial_T20190907_111251_461099",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190907_111251_461099",
+        "task description": "Put two rolls of toilet paper in a drawer under the sink.",
+        "NL Steps": [
+            "find a toiletpaper",
+            "pick up a toiletpaper",
+            "find a drawer",
+            "put down the toiletpaper",
+            "find a toiletpaper",
+            "pick up a toiletpaper",
+            "find a drawer",
+            "put down the toiletpaper"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_two_obj_and_place-ToiletPaper-None-Drawer-423/trial_T20190907_111251_461099",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190907_111251_461099",
+        "task description": "Put two rolls of toilet paper into a drawer underneath the sink.",
+        "NL Steps": [
+            "find a toiletpaper",
+            "pick up a toiletpaper",
+            "find a drawer",
+            "put down the toiletpaper",
+            "find a toiletpaper",
+            "pick up a toiletpaper",
+            "find a drawer",
+            "put down the toiletpaper"
+        ]
+    },
+    {
+        "repeat_idx": 5,
+        "full_scene_name": "pick_and_place_simple-Cloth-None-BathtubBasin-405/trial_T20190906_162502_940304",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190906_162502_940304",
+        "task description": "Move the rag from the bottom left cupboard to the bath tub.",
+        "NL Steps": [
+            "find a cloth",
+            "pick up a cloth",
+            "find a bathtubbasin",
+            "put down the cloth"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_clean_then_place_in_recep-SoapBar-None-Toilet-428/trial_T20190907_041436_588106",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190907_041436_588106",
+        "task description": "Place the wet soap on top of the toilet next to the other soaps.",
+        "NL Steps": [
+            "find a soapbar",
+            "pick up a soapbar",
+            "find a sinkbasin",
+            "put down the soapbar",
+            "find a soapbar",
+            "pick up the soapbar",
+            "find a toilet",
+            "put down the soapbar"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_clean_then_place_in_recep-SoapBar-None-Toilet-428/trial_T20190907_041436_588106",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190907_041436_588106",
+        "task description": "Move a rinsed off bar of soap from the sink to the back of the toilet. ",
+        "NL Steps": [
+            "find a soapbar",
+            "pick up a soapbar",
+            "find a sinkbasin",
+            "put down the soapbar",
+            "find a soapbar",
+            "pick up the soapbar",
+            "find a toilet",
+            "put down the soapbar"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_two_obj_and_place-Knife-None-Drawer-18/trial_T20190907_065232_689984",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190907_065232_689984",
+        "task description": "Put two knives from the dining table in the drawer to the left of the stove.",
+        "NL Steps": [
+            "find a knife",
+            "pick up a knife",
+            "find a drawer",
+            "put down the knife",
+            "find a knife",
+            "pick up a knife",
+            "find a drawer",
+            "put down the knife"
+        ]
+    },
+    {
+        "repeat_idx": 0,
+        "full_scene_name": "pick_and_place_simple-Candle-None-Toilet-429/trial_T20190908_052232_887934",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190908_052232_887934",
+        "task description": "Put a candle on the back of a toilet.",
+        "NL Steps": [
+            "find a candle",
+            "pick up a candle",
+            "find a toilet",
+            "put down the candle"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_clean_then_place_in_recep-SoapBar-None-Drawer-423/trial_T20190906_202340_749336",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190906_202340_749336",
+        "task description": "Put wet soap in the cabinet under the sink to the left. ",
+        "NL Steps": [
+            "find a soapbar",
+            "pick up a soapbar",
+            "find a sinkbasin",
+            "put down the soapbar",
+            "find a soapbar",
+            "pick up the soapbar",
+            "find a drawer",
+            "put down the soapbar"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_simple-Book-None-SideTable-329/trial_T20190908_050633_745514",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190908_050633_745514",
+        "task description": "Place book on right bedside table",
+        "NL Steps": [
+            "find a book",
+            "pick up a book",
+            "find a sidetable",
+            "put down the book"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_clean_then_place_in_recep-Plate-None-CounterTop-19/trial_T20190908_212725_836398",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190908_212725_836398",
+        "task description": "place a clean plate down on the kitchen counter to the right of the sink",
+        "NL Steps": [
+            "find a plate",
+            "pick up a plate",
+            "find a sinkbasin",
+            "put down the plate",
+            "find a plate",
+            "pick up the plate",
+            "find a countertop",
+            "put down the plate"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_two_obj_and_place-RemoteControl-None-Ottoman-203/trial_T20190906_182952_858723",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190906_182952_858723",
+        "task description": "Place two controllers on the bench in front of the couch.",
+        "NL Steps": [
+            "find a remotecontrol",
+            "pick up a remotecontrol",
+            "find a ottoman",
+            "put down the remotecontrol",
+            "find a remotecontrol",
+            "pick up a remotecontrol",
+            "find a ottoman",
+            "put down the remotecontrol"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_simple-SoapBottle-None-Cabinet-414/trial_T20190908_110131_524518",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190908_110131_524518",
+        "task description": "Place the lotion on the cabinet underneath the sink.",
+        "NL Steps": [
+            "find a soapbottle",
+            "pick up a soapbottle",
+            "find a cabinet",
+            "put down the soapbottle"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_and_place_simple-SoapBottle-None-Cabinet-414/trial_T20190908_110131_524518",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190908_110131_524518",
+        "task description": "Put the bottle of lotion underneath the sink.",
+        "NL Steps": [
+            "find a soapbottle",
+            "pick up a soapbottle",
+            "find a cabinet",
+            "put down the soapbottle"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_and_place_simple-Plunger-None-Cabinet-414/trial_T20190909_031040_889814",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190909_031040_889814",
+        "task description": "Put the plunger under the sink. ",
+        "NL Steps": [
+            "find a plunger",
+            "pick up a plunger",
+            "find a cabinet",
+            "put down the plunger"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_clean_then_place_in_recep-SoapBar-None-Toilet-410/trial_T20190906_201106_979461",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190906_201106_979461",
+        "task description": "Put a clean bar of soap on top of a toilet's tank.",
+        "NL Steps": [
+            "find a soapbar",
+            "pick up a soapbar",
+            "find a sinkbasin",
+            "put down the soapbar",
+            "find a soapbar",
+            "pick up the soapbar",
+            "find a toilet",
+            "put down the soapbar"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_with_movable_recep-RemoteControl-Box-ArmChair-214/trial_T20190907_120634_187855",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190907_120634_187855",
+        "task description": "Box a remote control, move it at the chair near the door.",
+        "NL Steps": [
+            "find a remotecontrol",
+            "pick up a remotecontrol",
+            "find a box",
+            "put down the remotecontrol",
+            "pick up a box",
+            "find a armchair",
+            "put down the box"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_two_obj_and_place-SprayBottle-None-GarbageCan-419/trial_T20190908_164236_518264",
+        "task type": "pick_two_obj_and_place",
+        "task id": "trial_T20190908_164236_518264",
+        "task description": "To move two spray bottles to the bin next to the toilet. ",
+        "NL Steps": [
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a garbagecan",
+            "put down the spraybottle",
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a garbagecan",
+            "put down the spraybottle"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_clean_then_place_in_recep-DishSponge-None-CounterTop-403/trial_T20190908_144357_621068",
+        "task type": "pick_clean_then_place_in_recep",
+        "task id": "trial_T20190908_144357_621068",
+        "task description": "place a clean sponge on top of the sink counter",
+        "NL Steps": [
+            "find a dishsponge",
+            "pick up a dishsponge",
+            "find a sinkbasin",
+            "put down the dishsponge",
+            "find a dishsponge",
+            "pick up the dishsponge",
+            "find a countertop",
+            "put down the dishsponge"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "look_at_obj_in_light-Statue-None-DeskLamp-216/trial_T20190909_193045_208933",
+        "task type": "look_at_obj_in_light",
+        "task id": "trial_T20190909_193045_208933",
+        "task description": "To pick up the statue and turn on the lamp next to the couch.",
+        "NL Steps": [
+            "find a statue",
+            "pick up a statue",
+            "find a desklamp",
+            "turn on the desklamp"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_simple-SprayBottle-None-Cabinet-413/trial_T20190907_114931_692464",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190907_114931_692464",
+        "task description": "Move the cleaner from the toilet to the cabinet under the sinks",
+        "NL Steps": [
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a cabinet",
+            "put down the spraybottle"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_and_place_simple-SprayBottle-None-Cabinet-413/trial_T20190907_114931_692464",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190907_114931_692464",
+        "task description": "Put the green bottle in the cabinet under the sink",
+        "NL Steps": [
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a cabinet",
+            "put down the spraybottle"
+        ]
+    },
+    {
+        "repeat_idx": 2,
+        "full_scene_name": "pick_and_place_simple-Mug-None-Dresser-311/trial_T20190909_152837_739016",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190909_152837_739016",
+        "task description": "Put a mug on the table in front of a television.",
+        "NL Steps": [
+            "find a mug",
+            "pick up a mug",
+            "find a dresser",
+            "put down the mug"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_simple-Newspaper-None-Sofa-224/trial_T20190909_111324_949106",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190909_111324_949106",
+        "task description": "Place the newspaper next to the left laptop.",
+        "NL Steps": [
+            "find a newspaper",
+            "pick up a newspaper",
+            "find a sofa",
+            "put down the newspaper"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_with_movable_recep-Ladle-Plate-Cabinet-16/trial_T20190907_070152_814652",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190907_070152_814652",
+        "task description": "Place the plate with ladle inside it from the table into the cabinet above the coffee maker.",
+        "NL Steps": [
+            "find a ladle",
+            "pick up a ladle",
+            "find a plate",
+            "put down the ladle",
+            "pick up a plate",
+            "find a cabinet",
+            "put down the plate"
+        ]
+    },
+    {
+        "repeat_idx": 3,
+        "full_scene_name": "pick_and_place_with_movable_recep-Ladle-Plate-Cabinet-16/trial_T20190907_070152_814652",
+        "task type": "pick_and_place_with_movable_recep",
+        "task id": "trial_T20190907_070152_814652",
+        "task description": "Take the plate with a spoon inside it from the table to the cabinet on the right of the fridge.",
+        "NL Steps": [
+            "find a ladle",
+            "pick up a ladle",
+            "find a plate",
+            "put down the ladle",
+            "pick up a plate",
+            "find a cabinet",
+            "put down the plate"
+        ]
+    },
+    {
+        "repeat_idx": 1,
+        "full_scene_name": "pick_and_place_simple-SprayBottle-None-Toilet-415/trial_T20190909_075955_678702",
+        "task type": "pick_and_place_simple",
+        "task id": "trial_T20190909_075955_678702",
+        "task description": "knock an empty toilet paper roll off of the back of the toilet while placing a spray bottle next to it",
+        "NL Steps": [
+            "find a spraybottle",
+            "pick up a spraybottle",
+            "find a toilet",
+            "put down the spraybottle"
+        ]
+    }
+]
