@@ -87,8 +87,8 @@ Our flexible configuration options enable in-depth experimentation with **visual
 
 Download repo
 ```
-git clone https://github.com/EmbodiedBench/embodiedbench.git
-cd embodiedbench
+git clone https://github.com/EmbodiedBench/EmbodiedBench.git
+cd EmbodiedBench
 ```
 
 1️⃣ Environment for ```Habitat and Alfred```
@@ -121,7 +121,7 @@ python -m embodiedbench.envs.eb_alfred.scripts.startx 1
 Run the following code to ensure the EB-ALFRED environment is working correctly.
 ```
 conda activate embench
-python -m embodiedbench.envs.eb_alfred.AlfredRearrangeEnv
+python -m embodiedbench.envs.eb_alfred.EBAlfEnv
 ```
 
 ## EB-Habitat
@@ -150,7 +150,7 @@ cd ../..
 
 Run the following code to ensure the EB-Habitat environment is working correctly.
 ```
-python -m embodiedbench.envs.eb_habitat.HabitatRearrangeEnv
+python -m embodiedbench.envs.eb_habitat.EBHabEnv
 ```
 
 ## EB-Navigation

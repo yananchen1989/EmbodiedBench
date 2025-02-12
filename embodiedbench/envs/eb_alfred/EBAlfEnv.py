@@ -415,7 +415,7 @@ if __name__ == "__main__":
     """
     env = EBAlfEnv(eval_set='base', down_sample_ratio=1.0, selected_indexes=[])
     env.reset()
-    print([(i, name) for i, name in enumerate(env.skill_set)])
+    print([(i, name) for i, name in enumerate(env.language_skill_set)])
     for _ in range(30):
         # Select  action
         action = int(input('action id: ')) #env.action_space.sample()

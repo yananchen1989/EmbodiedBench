@@ -17,7 +17,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 
 ENV PATH=${CONDA_DIR}/bin:$PATH
 
-RUN git clone https://github.com/EmbodiedBench/embodiedbench.git /opt/embodiedbench
+RUN git clone https://github.com/EmbodiedBench/EmbodiedBench.git /opt/embodiedbench
 
 WORKDIR /opt/embodiedbench
 
