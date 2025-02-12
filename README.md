@@ -186,7 +186,7 @@ export QT_QPA_PLATFORM_PLUGIN_PATH=$COPPELIASIM_ROOT
 > Remember to source your bashrc (`source ~/.bashrc`) or 
 zshrc (`source ~/.zshrc`) after this.
 
-* Install the PyRep and EB-Manipulation package:
+* Install the PyRep, EB-Manipulation package and dataset:
 ```bash
 git clone https://github.com/stepjam/PyRep.git
 cd PyRep
@@ -196,9 +196,12 @@ cd ..
 pip install -r requirements.txt
 pip install -e .
 cp ./simAddOnScript_PyRep.lua $COPPELIASIM_ROOT
+git clone https://huggingface.co/datasets/markyyds/eb_manipulation_dataset
+mv eb_manipulation_dataset/data/ ./
+rm -rf eb_manipulation_dataset/
 ```
 
-> Remember that whenever you re-install the PyRep, the file will be overwritten. Then, you should copy this again.
+> Remember that whenever you re-install the PyRep, simAddOnScript_PyRep.lua will be overwritten. Then, you should copy this again.
 
 * Run the following code to ensure the EB-Manipulation is working correctly (set display to :0 if you have not):
 ```bash
