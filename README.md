@@ -5,7 +5,7 @@ EmbodiedBench: Comprehensive Benchmarking Multi-modal Large Language Models for 
 
 
 <p align="center">
-  📄  <a href="docs/pdf/paper.pdf"><strong>Paper</strong></a> |  
+  📄  <a href="docs/pdf/embodiedbench.pdf"><strong>Paper</strong></a> |  
   🏠 <a href="https://embodiedbench.github.io"><strong>Project Website</strong></a>
 </p>
 
