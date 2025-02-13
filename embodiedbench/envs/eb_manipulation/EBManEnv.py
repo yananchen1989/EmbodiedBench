@@ -259,9 +259,12 @@ if __name__ == '__main__':
     test_env = EBManEnv(eval_set='base', selected_indexes=[0])
     description, obs = test_env.reset()
     test_env.save_image()
+    print("testing the EB-Manipulation environment ...")
+    print("ignore errors like could not create path or target is outside of workspace as actions are randomly sampled ...")
     for _ in range(3):
         action = test_env.action_space.sample()
         action[-1] = 1.0
         obs, reward, terminate, info = test_env.step(action)
         test_env.save_image()
     test_env.close()
+    print("testing completed!")
