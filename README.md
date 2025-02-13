@@ -33,7 +33,7 @@ EmbodiedBench: Comprehensive Benchmarking Multi-modal Large Language Models for 
 # 🔥 Overview 
 We introduce **EmbodiedBench**, a comprehensive benchmark designed to evaluate **Multi-modal Large Language Models (MLLMs) as embodied agents**. While existing benchmarks have primarily focused on Large Language Models (LLMs) and high-level tasks, EmbodiedBench takes a leap forward by offering a comprehensive, fine-grained evaluation of MLLM-based agents across both **high-level and low-level tasks**, as well as **six critical agent capabilities**. 
 
-EmbodiedBench is more than just a benchmark—it’s a **multifaceted, standardized evaluation platform** that not only uncovers the current challenges in embodied AI but also provides actionable insights to push the boundaries of MLLM-driven embodied intelligence.  
+EmbodiedBench is more than a benchmark—it’s a **multifaceted, standardized evaluation platform** that not only uncovers the current challenges in embodied AI but also provides actionable insights to push the boundaries of MLLM-driven embodied agents.  
 
 
 ## 🚀 **Key Features** 
@@ -83,7 +83,7 @@ Our flexible configuration options enable in-depth experimentation with **visual
 
 
 # 🖥️ Installation
-**Note: we will install three conda environments one for EB-ALFRED and EB-Habitat, one for EB-Navigation, and one for EB-Manipulation.**
+**Note: we need install three conda environments, one for EB-ALFRED and EB-Habitat, one for EB-Navigation, and one for EB-Manipulation.**
 
 Download repo
 ```
@@ -292,9 +292,10 @@ lmdeploy serve api_server "OpenGVLab/InternVL2_5-8B" --server-port $port --tp 1
 
 ## Step 2, running the evaluation
 conda activate embench
-export remote_url='$IP_address:$port/v1' # set the address for access
+export remote_url='IP_address:port/v1' # set the address for access
 python -m embodiedbench.main env=eb-hab model_name=OpenGVLab/InternVL2_5-8B exp_name='baseline' 
 ```
+You can also refer to [LMDeploy](https://github.com/InternLM/lmdeploy) for more details.
 
 ## Docker
 To be added.
