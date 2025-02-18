@@ -218,6 +218,7 @@ Before running evaluations, set up your environment variables if you plan to use
 export OPENAI_API_KEY="your_oai_api_key_here"
 export GEMINI_API_KEY="your_gemini_api_key_here"
 export ANTHROPIC_API_KEY="your_anpic_api_key_here"
+export DASHSCOPE_API_KEY="your_dashscope_api_here" # the official qwen apis
 ```
 To evaluate MLLMs in EmbodiedBench, activate the corresponding Conda environment and run:
 ```
