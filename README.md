@@ -5,7 +5,7 @@ EmbodiedBench: Comprehensive Benchmarking Multi-modal Large Language Models for 
 
 
 <p align="center">
-  📄  <a href="docs/pdf/paper.pdf"><strong>Paper</strong></a> |  
+  📄  <a href="http://arxiv.org/abs/2502.09560"><strong>Paper</strong></a> |  
   🏠 <a href="https://embodiedbench.github.io"><strong>Project Website</strong></a>
 </p>
 
@@ -33,7 +33,7 @@ EmbodiedBench: Comprehensive Benchmarking Multi-modal Large Language Models for 
 # 🔥 Overview 
 We introduce **EmbodiedBench**, a comprehensive benchmark designed to evaluate **Multi-modal Large Language Models (MLLMs) as embodied agents**. While existing benchmarks have primarily focused on Large Language Models (LLMs) and high-level tasks, EmbodiedBench takes a leap forward by offering a comprehensive, fine-grained evaluation of MLLM-based agents across both **high-level and low-level tasks**, as well as **six critical agent capabilities**. 
 
-EmbodiedBench is more than just a benchmark—it’s a **multifaceted, standardized evaluation platform** that not only uncovers the current challenges in embodied AI but also provides actionable insights to push the boundaries of MLLM-driven embodied intelligence.  
+EmbodiedBench is more than a benchmark—it’s a **multifaceted, standardized evaluation platform** that not only uncovers the current challenges in embodied AI but also provides actionable insights to push the boundaries of MLLM-driven embodied agents.  
 
 
 ## 🚀 **Key Features** 
@@ -83,7 +83,7 @@ Our flexible configuration options enable in-depth experimentation with **visual
 
 
 # 🖥️ Installation
-**Note: we will install three conda environments one for EB-ALFRED and EB-Habitat, one for EB-Navigation, and one for EB-Manipulation.**
+**Note: we need install three conda environments, one for EB-ALFRED and EB-Habitat, one for EB-Navigation, and one for EB-Manipulation.**
 
 Download repo
 ```
@@ -186,7 +186,7 @@ export QT_QPA_PLATFORM_PLUGIN_PATH=$COPPELIASIM_ROOT
 > Remember to source your bashrc (`source ~/.bashrc`) or 
 zshrc (`source ~/.zshrc`) after this.
 
-* Install the PyRep and EB-Manipulation package:
+* Install the PyRep, EB-Manipulation package and dataset:
 ```bash
 git clone https://github.com/stepjam/PyRep.git
 cd PyRep
@@ -196,9 +196,12 @@ cd ..
 pip install -r requirements.txt
 pip install -e .
 cp ./simAddOnScript_PyRep.lua $COPPELIASIM_ROOT
+git clone https://huggingface.co/datasets/markyyds/eb_manipulation_dataset
+mv eb_manipulation_dataset/data/ ./
+rm -rf eb_manipulation_dataset/
 ```
 
-> Remember that whenever you re-install the PyRep, the file will be overwritten. Then, you should copy this again.
+> Remember that whenever you re-install the PyRep, simAddOnScript_PyRep.lua will be overwritten. Then, you should copy this again.
 
 * Run the following code to ensure the EB-Manipulation is working correctly (set display to :0 if you have not):
 ```bash
@@ -215,6 +218,7 @@ Before running evaluations, set up your environment variables if you plan to use
 export OPENAI_API_KEY="your_oai_api_key_here"
 export GEMINI_API_KEY="your_gemini_api_key_here"
 export ANTHROPIC_API_KEY="your_anpic_api_key_here"
+export DASHSCOPE_API_KEY="your_dashscope_api_here" # the official qwen apis
 ```
 To evaluate MLLMs in EmbodiedBench, activate the corresponding Conda environment and run:
 ```
@@ -289,9 +293,10 @@ lmdeploy serve api_server "OpenGVLab/InternVL2_5-8B" --server-port $port --tp 1
 
 ## Step 2, running the evaluation
 conda activate embench
-export remote_url='$IP_address:$port/v1' # set the address for access
+export remote_url='IP_address:port/v1' # set the address for access
 python -m embodiedbench.main env=eb-hab model_name=OpenGVLab/InternVL2_5-8B exp_name='baseline' 
 ```
+You can also refer to [LMDeploy](https://github.com/InternLM/lmdeploy) for more details.
 
 ## Docker
 To be added.

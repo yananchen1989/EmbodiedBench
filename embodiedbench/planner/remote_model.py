@@ -45,6 +45,11 @@ class RemoteModel:
                 )
             elif "gpt" in self.model_name:
                 self.model = OpenAI()
+            elif 'qwen' in self.model_name:
+                self.model = OpenAI(
+                    api_key=os.getenv("DASHSCOPE_API_KEY"),
+                    base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+                )
             elif "Qwen2-VL" in self.model_name:
                 self.model = OpenAI(base_url = remote_url)
             elif "Llama-3.2-11B-Vision-Instruct" in self.model_name:
@@ -72,6 +77,8 @@ class RemoteModel:
             elif "gemini" in self.model_name:
                 return self._call_gemini(message_history)
             elif "gpt" in self.model_name:
+                return self._call_gpt(message_history)
+            elif 'qwen' in self.model_name:
                 return self._call_gpt(message_history)
             elif "Qwen2-VL-7B-Instruct" in self.model_name:
                 return self._call_qwen7b(message_history)
