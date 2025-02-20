@@ -15,6 +15,10 @@ from embodiedbench.planner.planner_utils import convert_format_2claude, convert_
 temperature = 0
 max_completion_tokens = 2048
 remote_url = os.environ.get('remote_url')
+remote_url1 = "http://chicago.huan-zhang.com:23333/v1"
+remote_url2 = "http://chicago.huan-zhang.com:23332/v1"
+remote_url3 = "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
+remote_url4 = "http://chicago.huan-zhang.com:23334/v1"
 
 class RemoteModel:
     def __init__(
@@ -45,12 +49,18 @@ class RemoteModel:
                 )
             elif "gpt" in self.model_name:
                 self.model = OpenAI()
-            elif "Qwen2-VL" in self.model_name:
-                self.model = OpenAI(base_url = remote_url)
+            elif "qwen_vl_max" in self.model_name:
+                self.model = OpenAI(api_key=os.environ.get("ALI2"), base_url = remote_url3)
+            elif "qwen" in self.model_name:
+                self.model = OpenAI(api_key=os.getenv("ALI_API_KEY"), base_url = "https://dashscope-intl.aliyuncs.com/compatible-mode/v1")
             elif "Llama-3.2-11B-Vision-Instruct" in self.model_name:
                 self.model = OpenAI(base_url = remote_url)
-            elif "OpenGVLab/InternVL" in self.model_name:
-                self.model = OpenAI(base_url = remote_url)
+            elif "OpenGVLab/InternVL2_5-78" in self.model_name:
+                self.model = OpenAI(base_url = remote_url1)
+            elif "OpenGVLab/InternVL2_5-38" in self.model_name:
+                self.model = OpenAI(base_url = remote_url2)
+            elif "OpenGVLab/InternVL2_5-8" in self.model_name:
+                self.model = OpenAI(base_url = remote_url4)
             elif "meta-llama/Llama-3.2-90B-Vision-Instruct" in self.model_name:
                 self.model = OpenAI(base_url = remote_url)
             elif "90b-vision-instruct" in self.model_name: # you can use fireworks to inference
@@ -73,10 +83,12 @@ class RemoteModel:
                 return self._call_gemini(message_history)
             elif "gpt" in self.model_name:
                 return self._call_gpt(message_history)
-            elif "Qwen2-VL-7B-Instruct" in self.model_name:
-                return self._call_qwen7b(message_history)
-            elif "Qwen2-VL-72B-Instruct" in self.model_name:
-                return self._call_qwen72b(message_history)
+            elif 'qwen' in self.model_name:
+                return self._call_gpt(message_history)
+            # elif "Qwen2-VL-7B-Instruct" in self.model_name:
+            #     return self._call_qwen7b(message_history)
+            # elif "Qwen2-VL-72B-Instruct" in self.model_name:
+            #     return self._call_qwen72b(message_history)
             elif "Llama-3.2-11B-Vision-Instruct" in self.model_name:
                 return self._call_llama11b(message_history)
             elif "meta-llama/Llama-3.2-90B-Vision-Instruct" in self.model_name:

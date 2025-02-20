@@ -30,7 +30,8 @@ class EB_NavigationEvaluator():
         self.planner = None
 
     def save_episode_metric(self, episode_info):
-        filename = 'episode_{}_final_res.json'.format(self.env._current_episode_num)
+        episode_idx = self.env._current_episode_num if not len(self.env.selected_indexes) else self.env.selected_indexes[self.env._current_episode_num - 1] + 1
+        filename = 'episode_{}_final_res.json'.format(episode_idx)
         res_path = os.path.join(self.env.log_path, 'results')
         if not os.path.exists(res_path):
             os.makedirs(res_path)
@@ -62,7 +63,7 @@ class EB_NavigationEvaluator():
                                            multiview=self.config['multiview'], multistep = self.config['multistep'], visual_icl = self.config['visual_icl'])
             
             self.evaluate()
-            average_json_values(os.path.join(self.env.log_path, 'results'))
+            average_json_values(os.path.join(self.env.log_path, 'results'), selected_key = None)
             with open(os.path.join(self.env.log_path, 'config.txt'), 'w') as f:
                 f.write(str(self.config))
 

@@ -1,21 +1,26 @@
-FROM nvidia/cudagl:11.3.1-base-ubuntu20.04
+# FROM nvidia/cudagl:11.3.1-base-ubuntu20.04
+
+ARG CUDA_VERSION
+
+FROM nvidia/cuda:$CUDA_VERSION-devel-ubuntu18.04
+ARG NVIDIA_VERSION
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
-    wget \
-    curl \
-    ca-certificates \
-    bzip2 \
-    build-essential libffi-dev python3-dev \
-    # xvfb \
-    # xserver-xorg \
-    # mesa-utils \
-    # # nvidia-xconfig \
-    # vulkan-utils \
-    # alsa-utils \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends python3-pip libvulkan1 python3-venv vim pciutils wget git kmod vim bzip2 build-essential libffi-dev python3-dev libgtk2.0-dev
+    # git \
+    # wget \
+    # curl \
+    # ca-certificates \
+    # bzip2 \
+    # build-essential libffi-dev python3-dev \
+    # # xvfb \
+    # # xserver-xorg \
+    # # mesa-utils \
+    # # # nvidia-xconfig \
+    # # vulkan-utils \
+    # # alsa-utils \
+    # && rm -rf /var/lib/apt/lists/*
 
 # RUN [ -c /dev/tty0 ] || mknod -m 666 /dev/tty0 c 4 0
 # RUN mkdir -p /tmp/runtime && chmod 777 /tmp/runtime
@@ -81,41 +86,45 @@ RUN --mount=type=secret,id=github_token \
 
 WORKDIR /opt/embodiedbench
 
+
+COPY scripts/install_nvidia.sh /app/
+RUN NVIDIA_VERSION=$NVIDIA_VERSION /app/install_nvidia.sh
+
 ############################ 1. Setup Env for EB-Alf and EB-Hab ############################
 
-# RUN conda env create -f conda_envs/environment.yaml && conda clean --all -y
+RUN conda env create -f conda_envs/environment.yaml && conda clean --all -y
 
-# RUN conda run -n embench pip install -e .
+RUN conda run -n embench pip install -e .
 
-# # 1. Habitat-Sim and Habitat-Lab
-# RUN bash -c "source /opt/conda/etc/profile.d/conda.sh && \
-#              conda activate embench && \
-#              conda install -y habitat-sim==0.3.0 withbullet headless -c conda-forge -c aihabitat"
+# 1. Habitat-Sim and Habitat-Lab
+RUN bash -c "source /opt/conda/etc/profile.d/conda.sh && \
+             conda activate embench && \
+             conda install -y habitat-sim==0.3.0 withbullet headless -c conda-forge -c aihabitat"
              
-# RUN bash -c "source /opt/conda/etc/profile.d/conda.sh && \
-#              conda activate embench && \
-#              git clone -b 'v0.3.0' --depth 1 https://github.com/facebookresearch/habitat-lab.git /root/habitat-lab"
+RUN bash -c "source /opt/conda/etc/profile.d/conda.sh && \
+             conda activate embench && \
+             git clone -b 'v0.3.0' --depth 1 https://github.com/facebookresearch/habitat-lab.git /root/habitat-lab"
 
-# RUN bash -c "source /opt/conda/etc/profile.d/conda.sh && \
-#              conda activate embench && \
-#              cd /root/habitat-lab && \
-#              pip install -e habitat-lab && \
-#              pip install -e habitat-baselines && \
-#              pip install numpy==1.23.5"
+RUN bash -c "source /opt/conda/etc/profile.d/conda.sh && \
+             conda activate embench && \
+             cd /root/habitat-lab && \
+             pip install -e habitat-lab && \
+             pip install -e habitat-baselines && \
+             pip install numpy==1.23.5"
 
-# # 2. YCB and ReplicaCAD
-# RUN bash -c "source /opt/conda/etc/profile.d/conda.sh && \
-#              conda activate embench && \
-#              cd /opt/embodiedbench/embodiedbench/envs/eb_habitat && \
-#              conda install -y -c conda-forge git-lfs && \
-#              python -m habitat_sim.utils.datasets_download --uids rearrange_task_assets"
+# 2. YCB and ReplicaCAD
+RUN bash -c "source /opt/conda/etc/profile.d/conda.sh && \
+             conda activate embench && \
+             cd /opt/embodiedbench/embodiedbench/envs/eb_habitat && \
+             conda install -y -c conda-forge git-lfs && \
+             python -m habitat_sim.utils.datasets_download --uids rearrange_task_assets"
 
 
 ############################ 2. Setup Env for EB-Nav ############################
 
-# RUN conda env create -f conda_envs/environment_eb-nav.yaml && conda clean --all -y
+RUN conda env create -f conda_envs/environment_eb-nav.yaml && conda clean --all -y
 
-# RUN conda run -n embench_nav pip install -e .
+RUN conda run -n embench_nav pip install -e .
 
 
 ############################ 3. Setup Env for EB-Man ############################
@@ -172,9 +181,9 @@ RUN bash -c "source /opt/conda/etc/profile.d/conda.sh && conda activate embench_
 # CMD ["bash"]
 
 
-# 将入口脚本复制到镜像中
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# # 将入口脚本复制到镜像中
+# COPY entrypoint.sh /entrypoint.sh
+# RUN chmod +x /entrypoint.sh
 
 # 入口命令：启动 X server 后再启动你的 AI2-THOR 应用
-CMD ["/entrypoint.sh"]
+CMD ["/bin/bash"]

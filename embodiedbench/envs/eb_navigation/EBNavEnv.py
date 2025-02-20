@@ -15,8 +15,7 @@ import copy
 SUCCESS_THRESHOLD = 1
 
 ValidEvalSets = [
-    'base', 'common_sense', 'complex_instruction', 
-    'visual_appearance', 'long_horizon'
+    'base', 'common_sense', 'complex_instruction', 'visual_appearance', 'long_horizon'
 ]
 
 
@@ -38,6 +37,7 @@ DISCRETE_SKILLSET = [
 # "Move backward by 0.25 meter.",
 # "Move right by 0.25 meter.",
 # "Move left by 0.25 meter.",
+# [0,1,2,3,4,5,6,7,8,9,10,49,50,51,52,53,54,55,56,57,58,59]
 
 
 class EBNavigationEnv(gym.Env):
@@ -249,13 +249,21 @@ class EBNavigationEnv(gym.Env):
         info = {}
 
         self._current_step += 1
-        # Path1: seperate procedure if Done or exceed max_step
-        if type(action)!=int or action > 7 or action < 0 or self._current_step>self._max_episode_steps:
-            self._last_event = self.env.step(action="Done")
+
+        if self._current_step>=self._max_episode_steps:
+
+            if type(action)!=int or action > 7 or action < 0:
+                action = np.random.randint(8)
+
+            self.discrete_action_mapper(action)
+            reward, distance = self.measure_success()
             done = True
-            info['action_description'] = self.language_skill_set[-1]
+            info['action_description'] = self.language_skill_set[action]
+
         else:
-            # Path2: seperate procedure if not as above condition
+            if type(action)!=int or action > 7 or action < 0:
+                action = np.random.randint(8)
+
             self.discrete_action_mapper(action)
             reward, distance = self.measure_success()
             if reward>0:

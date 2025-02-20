@@ -10,7 +10,7 @@ from openai import OpenAI
 from embodiedbench.planner.planner_config.generation_guide import llm_generation_guide, vlm_generation_guide
 from embodiedbench.planner.planner_utils import local_image_to_data_url
 # from embodiedbench.planner.eb_navigation.RemoteModel_claude import RemoteModel
-from embodiedbench.planner.remote_model import RemoteModel
+from embodiedbench.planner.remote_model1 import RemoteModel
 from embodiedbench.evaluator.config.visual_icl_examples.eb_navigation.ebnav_visual_icl import create_example_json_list
 from embodiedbench.planner.planner_utils import template, template_lang
 from embodiedbench.main import logger
@@ -272,7 +272,13 @@ You are supposed to output in JSON.{template_lang if self.language_only else tem
                     text_content = content_item["text"]
                     logger.debug(f"Model Input:\n{text_content}\n")
 
-        out = self.client.respond(self.episode_messages)
+        try:
+            out = self.client.respond(self.episode_messages)
+        except Exception as e:
+            print(e)
+            if 'qwen' in self.model_name:
+                return -2,'''{"visual_state_description":"qwen model generate empty action due to inappropriate content check", "reasoning_and_reflection":"invalid json, random action",
+                   "language_plan":"invalid json, random action"}'''
 
         if self.chat_history:
             self.episode_messages.append(
@@ -288,7 +294,7 @@ You are supposed to output in JSON.{template_lang if self.language_only else tem
         if valid:
             return action, out
         else:
-            out = '''{"reasoning_and_reflection":"invalid json, random action",
+            out = '''{"visual_state_description":"invalid json, random action", "reasoning_and_reflection":"invalid json, random action",
                    "language_plan":"invalid json, random action"}'''
             return action, out
 
