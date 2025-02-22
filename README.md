@@ -133,22 +133,19 @@ python -m embodiedbench.envs.eb_alfred.EBAlfEnv
  ```
  conda activate embench
  conda install -y habitat-sim==0.3.0 withbullet  headless -c conda-forge -c aihabitat
- git clone -b 'v0.3.0' --depth 1 https://github.com/facebookresearch/habitat-lab.git ~/habitat-lab
- cd ~/habitat-lab
+ git clone -b 'v0.3.0' --depth 1 https://github.com/facebookresearch/habitat-lab.git ./habitat-lab
+ cd ./habitat-lab
  pip install -e habitat-lab
- pip install -e habitat-baselines
- ## now the above habitat-baselines can lead to wrong version of numpy, just reinstall it
- pip install numpy==1.23.5 
+ cd ..
  ```
 
 - Download YCB and ReplicaCAD dataset for the Language Rearrangement task. 
 > **Remember to run the following commands inside the eb_habitat folder; otherwise, errors would occur.**
 ```
-cd embodiedbench/embodiedbench/envs/eb_habitat
 conda install -y -c conda-forge git-lfs
 python -m habitat_sim.utils.datasets_download --uids rearrange_task_assets
-cd ../..
 ```
+After the above step, there should be a data folder under envs/eb_habitat.
 
 Run the following code to ensure the EB-Habitat environment is working correctly.
 ```

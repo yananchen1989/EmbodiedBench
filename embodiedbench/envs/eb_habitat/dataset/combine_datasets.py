@@ -23,8 +23,8 @@ from habitat.tasks.rearrange.multi_task.pddl_action import PddlAction
 from habitat.tasks.rearrange.multi_task.pddl_predicate import Predicate
 from habitat.tasks.rearrange.multi_task.rearrange_pddl import (
     PddlEntity, SimulatorObjectType)
-from habitat_baselines.config.default_structured_configs import \
-    HabitatBaselinesConfigPlugin
+# from habitat_baselines.config.default_structured_configs import \
+#     HabitatBaselinesConfigPlugin
 from PIL import Image
 from torch import multiprocessing as mp
 from tqdm import tqdm

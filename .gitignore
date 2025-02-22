@@ -4,7 +4,6 @@ outputs/
 .vscode/
 embodiedbench/envs/eb_manipulation/generate_dataset.sh
 embodiedbench/envs/eb_manipulation/tools/__pycache__/grasploc.cpython-39.pyc
-*.sh
 *running
 *.DS_Store
 embodiedbench.egg-info/
