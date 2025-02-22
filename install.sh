@@ -56,3 +56,4 @@ cp ./simAddOnScript_PyRep.lua $COPPELIASIM_ROOT
 git clone https://huggingface.co/datasets/EmbodiedBench/EB-Manipulation
 mv EB-Manipulation/data/ ./
 rm -rf EB-Manipulation/
+cd ../../..
