@@ -85,6 +85,9 @@ Our flexible configuration options enable in-depth experimentation with **visual
 # 🖥️ Installation
 **Note: we need install three conda environments, one for EB-ALFRED and EB-Habitat, one for EB-Navigation, and one for EB-Manipulation.**
 
+You have two options for installation: you can either use `sh install.sh` or manually run the provided commands. After completing the installation with `install.sh`, you will need to start the headless server and verify that each environment is properly set up.
+
+
 Download repo
 ```
 git clone https://github.com/EmbodiedBench/EmbodiedBench.git
@@ -111,7 +114,7 @@ pip install -e .
 ```
 
 ## Start Headless Server
-Please run startx.py script before running experiment on headless servers. We use X_DISPLAY id=1 by default.
+Please run startx.py script before running experiment on headless servers. The server should be started in another tmux window. We use X_DISPLAY id=1 by default.
 ```
 python -m embodiedbench.envs.eb_alfred.scripts.startx 1
 ```
