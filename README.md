@@ -87,7 +87,7 @@ Our flexible configuration options enable in-depth experimentation with **visual
 
 Download repo
 ```
-git clone https://github.com/EmbodiedBench/EmbodiedBench.git
+git clone https://huggingface.co/datasets/EmbodiedBench/EB-ALFRED; mv EB-ALFRED embodiedbench/envs/eb_alfred/data/json_2.1.0
 cd EmbodiedBench
 ```
 
@@ -121,6 +121,7 @@ python -m embodiedbench.envs.eb_alfred.scripts.startx 1
 Run the following code to ensure the EB-ALFRED environment is working correctly.
 ```
 conda activate embench
+git clone https://huggingface.co/datasets/EmbodiedBench/EB-ALFRED ./json_2.1.0/
 python -m embodiedbench.envs.eb_alfred.EBAlfEnv
 ```
 
