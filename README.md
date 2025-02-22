@@ -310,12 +310,10 @@ This repo is based on awesome embodied benchmarks and simulations [Lota-Bench](h
 
 # Citation
 ```
-@misc{yang2025embodiedbench,
-      title={EmbodiedBench: Comprehensive Benchmarking Multi-modal Large Language Models for Vision-Driven Embodied Agents}, 
-      author={Rui Yang, Hanyang Chen, Junyu Zhang, Mark Zhao, Cheng Qian, Kangrui Wang, Qineng Wang, Teja Venkat Koripella, Marziyeh Movahedi, Manling Li, Heng Ji, Huan Zhang, Tong Zhang},
-      year={2025},
-      eprint={2502},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
+@article{yang2025embodiedbench,
+  title={EmbodiedBench: Comprehensive Benchmarking Multi-modal Large Language Models for Vision-Driven Embodied Agents},
+  author={Yang, Rui and Chen, Hanyang and Zhang, Junyu and Zhao, Mark and Qian, Cheng and Wang, Kangrui and Wang, Qineng and Koripella, Teja Venkat and Movahedi, Marziyeh and Li, Manling and others},
+  journal={arXiv preprint arXiv:2502.09560},
+  year={2025}
 }
 ```
