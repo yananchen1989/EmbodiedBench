@@ -1,74 +1,12 @@
-# FROM nvidia/cudagl:11.3.1-base-ubuntu20.04
-
 ARG CUDA_VERSION
+ARG NVIDIA_VERSION
 
 FROM nvidia/cuda:$CUDA_VERSION-devel-ubuntu18.04
-ARG NVIDIA_VERSION
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y --no-install-recommends python3-pip libvulkan1 python3-venv vim pciutils wget git kmod vim bzip2 build-essential libffi-dev python3-dev libgtk2.0-dev
-    # git \
-    # wget \
-    # curl \
-    # ca-certificates \
-    # bzip2 \
-    # build-essential libffi-dev python3-dev \
-    # # xvfb \
-    # # xserver-xorg \
-    # # mesa-utils \
-    # # # nvidia-xconfig \
-    # # vulkan-utils \
-    # # alsa-utils \
-    # && rm -rf /var/lib/apt/lists/*
 
-# RUN [ -c /dev/tty0 ] || mknod -m 666 /dev/tty0 c 4 0
-# RUN mkdir -p /tmp/runtime && chmod 777 /tmp/runtime
-# ENV XDG_RUNTIME_DIR=/tmp/runtime
-
-# # 修复没有声卡引起的 ALSA 错误：创建 /etc/asound.conf 文件
-# RUN echo 'pcm.!default {' > /etc/asound.conf && \
-#     echo '  type plug' >> /etc/asound.conf && \
-#     echo '  slave.pcm "null"' >> /etc/asound.conf && \
-#     echo '}' >> /etc/asound.conf
-
-# # 创建 Xorg 配置文件，配置 headless 模式（这里将文件放在 /etc/X11/xorg.conf）
-# RUN echo 'Section "ServerLayout"' > /etc/X11/xorg.conf && \
-#     echo '    Identifier "Layout0"' >> /etc/X11/xorg.conf && \
-#     echo '    Screen 0 "Screen0"' >> /etc/X11/xorg.conf && \
-#     echo 'EndSection' >> /etc/X11/xorg.conf && \
-#     echo 'Section "Monitor"' >> /etc/X11/xorg.conf && \
-#     echo '    Identifier "Monitor0"' >> /etc/X11/xorg.conf && \
-#     echo '    VendorName "Unknown"' >> /etc/X11/xorg.conf && \
-#     echo '    ModelName "Unknown"' >> /etc/X11/xorg.conf && \
-#     echo '    HorizSync 28.0-33.0' >> /etc/X11/xorg.conf && \
-#     echo '    VertRefresh 43.0-72.0' >> /etc/X11/xorg.conf && \
-#     echo '    Option "DPMS"' >> /etc/X11/xorg.conf && \
-#     echo 'EndSection' >> /etc/X11/xorg.conf && \
-#     echo 'Section "Device"' >> /etc/X11/xorg.conf && \
-#     echo '    Identifier "Device0"' >> /etc/X11/xorg.conf && \
-#     echo '    Driver "nvidia"' >> /etc/X11/xorg.conf && \
-#     echo '    VendorName "NVIDIA Corporation"' >> /etc/X11/xorg.conf && \
-#     echo '    BoardName "Tesla K80"' >> /etc/X11/xorg.conf && \
-#     echo 'EndSection' >> /etc/X11/xorg.conf && \
-#     echo 'Section "Screen"' >> /etc/X11/xorg.conf && \
-#     echo '    Identifier "Screen0"' >> /etc/X11/xorg.conf && \
-#     echo '    Device "Device0"' >> /etc/X11/xorg.conf && \
-#     echo '    Monitor "Monitor0"' >> /etc/X11/xorg.conf && \
-#     echo '    DefaultDepth 24' >> /etc/X11/xorg.conf && \
-#     echo '    Option "UseDisplayDevice" "None"' >> /etc/X11/xorg.conf && \
-#     echo '    SubSection "Display"' >> /etc/X11/xorg.conf && \
-#     echo '        Virtual 1280 1024' >> /etc/X11/xorg.conf && \
-#     echo '        Depth 24' >> /etc/X11/xorg.conf && \
-#     echo '    EndSubSection' >> /etc/X11/xorg.conf && \
-#     echo 'EndSection' >> /etc/X11/xorg.conf && \
-#     echo 'Section "ServerFlags"' >> /etc/X11/xorg.conf && \
-#     echo '    Option "AllowMouseOpenFail" "true"' >> /etc/X11/xorg.conf && \
-#     echo '    Option "AutoAddGPU" "false"' >> /etc/X11/xorg.conf && \
-#     echo '    Option "ProbeAllGpus" "false"' >> /etc/X11/xorg.conf && \
-#     echo 'EndSection' >> /etc/X11/xorg.conf
-
-# ENV DISPLAY=:0
 
 ENV CONDA_DIR=/opt/conda
 RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh && \
@@ -168,22 +106,4 @@ RUN bash -c "source /opt/conda/etc/profile.d/conda.sh && conda activate embench_
              cp simAddOnScript_PyRep.lua \$COPPELIASIM_ROOT"
 
 
-
-# CMD ["bash", "-c", "source /opt/conda/etc/profile.d/conda.sh && conda activate embench_nav && python -m embodiedbench.envs.eb_alfred.scripts.startx 1; exec bash"]
-
-# RUN echo '#!/bin/bash' > /entrypoint.sh \
-#     && echo 'Xvfb :0 -screen 0 1024x768x24 & ' >> /entrypoint.sh \
-#     && echo 'export DISPLAY=:0' >> /entrypoint.sh \
-#     && echo 'exec "$@"' >> /entrypoint.sh \
-#     && chmod +x /entrypoint.sh
-
-# ENTRYPOINT ["/entrypoint.sh"]
-# CMD ["bash"]
-
-
-# # 将入口脚本复制到镜像中
-# COPY entrypoint.sh /entrypoint.sh
-# RUN chmod +x /entrypoint.sh
-
-# 入口命令：启动 X server 后再启动你的 AI2-THOR 应用
 CMD ["/bin/bash"]

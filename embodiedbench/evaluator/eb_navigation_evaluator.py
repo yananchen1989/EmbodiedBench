@@ -105,7 +105,7 @@ class EB_NavigationEvaluator():
                                 break
                     else:
                         obs, reward, done, info = self.env.step(action, reasoning, 1)
-                        print(f"Executed action: {action_single}, Task success: {info['task_success']}")
+                        print(f"Executed action: {action}, Task success: {info['task_success']}")
                         logger.debug(f"reward: {reward}")
                         logger.debug(f"terminate: {done}\n")
                         self.planner.update_info(info)

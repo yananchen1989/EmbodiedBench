@@ -37,7 +37,6 @@ DISCRETE_SKILLSET = [
 # "Move backward by 0.25 meter.",
 # "Move right by 0.25 meter.",
 # "Move left by 0.25 meter.",
-# [0,1,2,3,4,5,6,7,8,9,10,49,50,51,52,53,54,55,56,57,58,59]
 
 
 class EBNavigationEnv(gym.Env):

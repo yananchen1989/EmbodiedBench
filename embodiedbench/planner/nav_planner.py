@@ -10,7 +10,7 @@ from openai import OpenAI
 from embodiedbench.planner.planner_config.generation_guide import llm_generation_guide, vlm_generation_guide
 from embodiedbench.planner.planner_utils import local_image_to_data_url
 # from embodiedbench.planner.eb_navigation.RemoteModel_claude import RemoteModel
-from embodiedbench.planner.remote_model1 import RemoteModel
+from embodiedbench.planner.remote_model import RemoteModel
 from embodiedbench.evaluator.config.visual_icl_examples.eb_navigation.ebnav_visual_icl import create_example_json_list
 from embodiedbench.planner.planner_utils import template, template_lang
 from embodiedbench.main import logger
