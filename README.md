@@ -6,6 +6,7 @@ EmbodiedBench: Comprehensive Benchmarking Multi-modal Large Language Models for 
 
 <p align="center">
   📄  <a href="http://arxiv.org/abs/2502.09560"><strong>Paper</strong></a> |  
+  🤗 <a href="https://huggingface.co/EmbodiedBench"><strong>Dataset</strong></a> |
   🏠 <a href="https://embodiedbench.github.io"><strong>Project Website</strong></a>
 </p>
 
