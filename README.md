@@ -199,9 +199,9 @@ cd ..
 pip install -r requirements.txt
 pip install -e .
 cp ./simAddOnScript_PyRep.lua $COPPELIASIM_ROOT
-git clone https://huggingface.co/datasets/markyyds/eb_manipulation_dataset
-mv eb_manipulation_dataset/data/ ./
-rm -rf eb_manipulation_dataset/
+git clone https://huggingface.co/datasets/EmbodiedBench/EB-Manipulation
+mv EB-Manipulation/data/ ./
+rm -rf EB-Manipulation/
 ```
 
 > Remember that whenever you re-install the PyRep, simAddOnScript_PyRep.lua will be overwritten. Then, you should copy this again.
