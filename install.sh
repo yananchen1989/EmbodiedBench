@@ -1,6 +1,9 @@
+#!/bin/bash
+source "$(conda info --base)/etc/profile.d/conda.sh"
 export EMBODIED_BENCH_ROOT=$(pwd)
 
-# Environment for ```Habitat and Alfred```
+
+# # Environment for ```Habitat and Alfred```
 conda env create -f conda_envs/environment.yaml 
 conda activate embench
 pip install -e .

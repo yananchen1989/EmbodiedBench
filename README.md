@@ -92,7 +92,8 @@ git clone https://github.com/EmbodiedBench/EmbodiedBench.git
 cd EmbodiedBench
 ```
 
-You have two options for installation: you can either use `sh install.sh` or manually run the provided commands. After completing the installation with `install.sh`, you will need to start the headless server and verify that each environment is properly set up.
+**You have two options for installation: you can either use 
+```bash install.sh``` or manually run the provided commands. After completing the installation with `bash install.sh`, you will need to start the headless server and verify that each environment is properly set up.**
 
 1️⃣ Environment for ```Habitat and Alfred```
 ```
@@ -120,12 +121,15 @@ python -m embodiedbench.envs.eb_alfred.scripts.startx 1
 ```
 
 ## EB-Alfred
-
-Run the following code to ensure the EB-ALFRED environment is working correctly. `Remember to start headless server.`
+Download dataset from huggingface.
 ```
 conda activate embench
 git clone https://huggingface.co/datasets/EmbodiedBench/EB-ALFRED
 mv EB-ALFRED embodiedbench/envs/eb_alfred/data/json_2.1.0
+```
+Run the following code to ensure the EB-ALFRED environment is working correctly. `Remember to start headless server.`
+
+```
 python -m embodiedbench.envs.eb_alfred.EBAlfEnv
 ```
 
@@ -202,13 +206,13 @@ cp ./simAddOnScript_PyRep.lua $COPPELIASIM_ROOT
 git clone https://huggingface.co/datasets/EmbodiedBench/EB-Manipulation
 mv EB-Manipulation/data/ ./
 rm -rf EB-Manipulation/
+cd ../../..
 ```
 
 > Remember that whenever you re-install the PyRep, simAddOnScript_PyRep.lua will be overwritten. Then, you should copy this again.
 
 * Run the following code to ensure the EB-Manipulation is working correctly (start headless server if you have not):
 ```bash
-cd ../../..
 export DISPLAY=:1
 python -m embodiedbench.envs.eb_manipulation.EBManEnv
 ```
