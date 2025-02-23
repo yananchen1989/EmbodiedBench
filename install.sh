@@ -1,5 +1,3 @@
-git clone https://github.com/EmbodiedBench/EmbodiedBench.git
-cd EmbodiedBench
 export EMBODIED_BENCH_ROOT=$(pwd)
 
 # Environment for ```Habitat and Alfred```
@@ -17,8 +15,6 @@ conda env create -f conda_envs/environment_eb-man.yaml
 conda activate embench_man
 pip install -e .
 
-# Start Headless Server
-python -m embodiedbench.envs.eb_alfred.scripts.startx 1
 
 # Install EB-ALFRED
 conda activate embench
@@ -34,6 +30,7 @@ pip install -e habitat-lab
 cd ..
 conda install -y -c conda-forge git-lfs
 python -m habitat_sim.utils.datasets_download --uids rearrange_task_assets
+mv data embodiedbench/envs/eb_habitat
 
 # Install EB-Manipulation
 conda activate embench_man

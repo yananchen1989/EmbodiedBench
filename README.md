@@ -86,14 +86,13 @@ Our flexible configuration options enable in-depth experimentation with **visual
 # 🖥️ Installation
 **Note: we need install three conda environments, one for EB-ALFRED and EB-Habitat, one for EB-Navigation, and one for EB-Manipulation.**
 
-You have two options for installation: you can either use `sh install.sh` or manually run the provided commands. After completing the installation with `install.sh`, you will need to start the headless server and verify that each environment is properly set up.
-
-
 Download repo
 ```
 git clone https://github.com/EmbodiedBench/EmbodiedBench.git
 cd EmbodiedBench
 ```
+
+You have two options for installation: you can either use `sh install.sh` or manually run the provided commands. After completing the installation with `install.sh`, you will need to start the headless server and verify that each environment is properly set up.
 
 1️⃣ Environment for ```Habitat and Alfred```
 ```
@@ -122,7 +121,7 @@ python -m embodiedbench.envs.eb_alfred.scripts.startx 1
 
 ## EB-Alfred
 
-Run the following code to ensure the EB-ALFRED environment is working correctly.
+Run the following code to ensure the EB-ALFRED environment is working correctly. `Remember to start headless server.`
 ```
 conda activate embench
 git clone https://huggingface.co/datasets/EmbodiedBench/EB-ALFRED
@@ -148,6 +147,7 @@ python -m embodiedbench.envs.eb_alfred.EBAlfEnv
 ```
 conda install -y -c conda-forge git-lfs
 python -m habitat_sim.utils.datasets_download --uids rearrange_task_assets
+mv data embodiedbench/envs/eb_habitat
 ```
 After the above step, there should be a data folder under envs/eb_habitat.
 
@@ -206,10 +206,10 @@ rm -rf EB-Manipulation/
 
 > Remember that whenever you re-install the PyRep, simAddOnScript_PyRep.lua will be overwritten. Then, you should copy this again.
 
-* Run the following code to ensure the EB-Manipulation is working correctly (set display to :0 if you have not):
+* Run the following code to ensure the EB-Manipulation is working correctly (start headless server if you have not):
 ```bash
 cd ../../..
-export DISPLAY=:0
+export DISPLAY=:1
 python -m embodiedbench.envs.eb_manipulation.EBManEnv
 ```
 
