@@ -130,6 +130,7 @@ mv EB-ALFRED embodiedbench/envs/eb_alfred/data/json_2.1.0
 Run the following code to ensure the EB-ALFRED environment is working correctly. `Remember to start headless server.`
 
 ```
+conda activate embench
 python -m embodiedbench.envs.eb_alfred.EBAlfEnv
 ```
 
@@ -138,12 +139,12 @@ python -m embodiedbench.envs.eb_alfred.EBAlfEnv
 - Install [Habitat-Sim](https://github.com/facebookresearch/habitat-sim) and [Habitat-Lab](https://github.com/facebookresearch/habitat-lab) via
 
  ```
- conda activate embench
- conda install -y habitat-sim==0.3.0 withbullet  headless -c conda-forge -c aihabitat
- git clone -b 'v0.3.0' --depth 1 https://github.com/facebookresearch/habitat-lab.git ./habitat-lab
- cd ./habitat-lab
- pip install -e habitat-lab
- cd ..
+conda activate embench
+conda install -y habitat-sim==0.3.0 withbullet  headless -c conda-forge -c aihabitat
+git clone -b 'v0.3.0' --depth 1 https://github.com/facebookresearch/habitat-lab.git ./habitat-lab
+cd ./habitat-lab
+pip install -e habitat-lab
+cd ..
  ```
 
 - Download YCB and ReplicaCAD dataset for the Language Rearrangement task. 
@@ -157,6 +158,7 @@ After the above step, there should be a data folder under envs/eb_habitat.
 
 Run the following code to ensure the EB-Habitat environment is working correctly.
 ```
+conda activate embench
 python -m embodiedbench.envs.eb_habitat.EBHabEnv
 ```
 
@@ -213,6 +215,7 @@ cd ../../..
 
 * Run the following code to ensure the EB-Manipulation is working correctly (start headless server if you have not):
 ```bash
+conda activate embench_man
 export DISPLAY=:1
 python -m embodiedbench.envs.eb_manipulation.EBManEnv
 ```
