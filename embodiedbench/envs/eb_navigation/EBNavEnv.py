@@ -464,7 +464,7 @@ if __name__ == "__main__":
         print(env.language_skill_set[action])
         
         # Execute action
-        obs, reward, done, info = env.step(action)
+        obs, reward, done, info = env.step(action, "", 1)
         print(reward, done, info)
         # Optional rendering and image saving
         env.save_image()
