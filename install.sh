@@ -18,6 +18,9 @@ conda env create -f conda_envs/environment_eb-man.yaml
 conda activate embench_man
 pip install -e .
 
+# Install Git LFS
+git lfs install
+git lfs pull
 
 # Install EB-ALFRED
 conda activate embench
