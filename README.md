@@ -154,7 +154,6 @@ cd ..
  ```
 
 - Download YCB and ReplicaCAD dataset for the Language Rearrangement task. 
-> **Remember to run the following commands inside the eb_habitat folder; otherwise, errors would occur.**
 ```
 conda install -y -c conda-forge git-lfs
 python -m habitat_sim.utils.datasets_download --uids rearrange_task_assets
