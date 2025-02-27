@@ -114,6 +114,12 @@ conda activate embench_man
 pip install -e .
 ```
 
+**Note: EB-Alfred, EB-Habitat and EB-Manipulation require downloading large datasets from Hugging Face or GitHub repositories. Ensure Git LFS is properly initialized by running the following commands:
+```
+git lfs install
+git lfs pull
+```
+
 ## Start Headless Server
 Please run startx.py script before running experiment on headless servers. The server should be started in another tmux window. We use X_DISPLAY id=1 by default.
 ```
