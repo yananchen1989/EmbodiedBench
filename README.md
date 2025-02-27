@@ -114,7 +114,7 @@ conda activate embench_man
 pip install -e .
 ```
 
-**Note: EB-Alfred, EB-Habitat and EB-Manipulation require downloading large datasets from Hugging Face or GitHub repositories. Ensure Git LFS is properly initialized by running the following commands:
+**Note: EB-Alfred, EB-Habitat and EB-Manipulation require downloading large datasets from Hugging Face or GitHub repositories. Ensure Git LFS is properly initialized by running the following commands:**
 ```
 git lfs install
 git lfs pull
