@@ -84,11 +84,11 @@ Our flexible configuration options enable in-depth experimentation with **visual
 
 
 # 🖥️ Installation
-**Note: we need install three conda environments, one for EB-ALFRED and EB-Habitat, one for EB-Navigation, and one for EB-Manipulation.**
+**Note: we need to install three conda environments, one for EB-ALFRED and EB-Habitat, one for EB-Navigation, and one for EB-Manipulation. Please use ssh download instead of HTTP download to avoid error during git lfs pull.**
 
 Download repo
 ```
-git clone https://github.com/EmbodiedBench/EmbodiedBench.git
+git clone git@github.com:EmbodiedBench/EmbodiedBench.git
 cd EmbodiedBench
 ```
 
