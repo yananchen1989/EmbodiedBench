@@ -11,6 +11,7 @@ from embodiedbench.planner.planner_config.generation_guide import llm_generation
 from embodiedbench.planner.planner_utils import local_image_to_data_url
 # from embodiedbench.planner.eb_navigation.RemoteModel_claude import RemoteModel
 from embodiedbench.planner.remote_model import RemoteModel
+from embodiedbench.planner.custom_model import CustomModel
 from embodiedbench.evaluator.config.visual_icl_examples.eb_navigation.ebnav_visual_icl import create_example_json_list
 from embodiedbench.planner.planner_utils import template, template_lang
 from embodiedbench.main import logger
@@ -21,8 +22,9 @@ template_lang = template_lang
 MESSAGE_WINDOW_LEN = 5
 
 class EBNavigationPlanner():
-    def __init__(self, model_name = '', model_type = 'remote', actions = [], system_prompt = '', examples = '', n_shot=1, obs_key='head_rgb', chat_history=False, language_only=False, multiview = False, multistep = False, visual_icl = False, kwargs={}):
+    def __init__(self, model_name = '', model_type = 'remote', actions = [], system_prompt = '', examples = '', n_shot=1, obs_key='head_rgb', chat_history=False, language_only=False, multiview = False, multistep = False, visual_icl = False, tp=1, kwargs={}):
         self.model_name = model_name
+        self.model_type = model_type
         self.obs_key = obs_key
         self.system_prompt = system_prompt
         self.n_shot = n_shot
@@ -67,8 +69,10 @@ The input given to you is {'an first person view observation' if not self.multis
 You are supposed to output in JSON.{template_lang if self.language_only else template}'''
 
         
-        self.client = RemoteModel(model_name = model_name, model_type=model_type, language_only=language_only)
-
+        if model_type == 'custom':
+            self.model = CustomModel(model_name, language_only)
+        else:
+            self.model = RemoteModel(model_name, model_type, language_only, tp=tp)
 
     
     def set_actions(self, actions):
@@ -249,6 +253,18 @@ You are supposed to output in JSON.{template_lang if self.language_only else tem
             valid = False
         return action, valid
 
+        
+    def act_custom(self, prompt, obs):
+        assert type(obs) == str # input image path
+        out = self.model.respond(prompt, obs)
+        out = out.replace("'",'"')
+        out = out.replace('\"s ', "\'s ")
+        out = out.replace('```json', '').replace('```', '')
+        logger.debug(f"Model Output:\n{out}\n")
+        action, _ = self.json_to_action(out)
+        self.planner_steps += 1
+        return action, out
+
 
     def act(self, observation, user_instruction):
         if type(observation) == dict:
@@ -257,7 +273,9 @@ You are supposed to output in JSON.{template_lang if self.language_only else tem
             obs = observation # input image path
         
         prompt = self.process_prompt(user_instruction, prev_act_feedback=self.episode_act_feedback)
-            
+        if self.model_type == 'custom':
+            return self.act_custom(prompt, obs)
+
         if len(self.episode_messages) == 0:
              self.episode_messages = self.get_message(obs, prompt)
         else:
@@ -273,7 +291,7 @@ You are supposed to output in JSON.{template_lang if self.language_only else tem
                     logger.debug(f"Model Input:\n{text_content}\n")
 
         try:
-            out = self.client.respond(self.episode_messages)
+            out = self.model.respond(self.episode_messages)
         except Exception as e:
             print(e)
             if 'qwen' in self.model_name:

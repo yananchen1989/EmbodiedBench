@@ -30,7 +30,11 @@ class ManipPlanner():
         self.examples = examples
         self.n_shot = n_shot
         self.chat_history = chat_history # whether to include all the chat history for prompting
-        self.model = RemoteModel(model_name, model_type, language_only, tp, 'manip')
+        if model_type == 'custom':
+            self.model = CustomModel(model_name, language_only)
+        else:
+            self.model = RemoteModel(model_name, model_type, language_only, tp=tp, 'manip')
+
         self.planner_steps = 0
         self.output_json_error = 0
         self.language_only = language_only
@@ -348,6 +352,17 @@ class ManipPlanner():
         self.episode_act_feedback = []
         self.planner_steps = 0
         self.output_json_error = 0
+
+    def act_custom(self, prompt, obs):
+        assert type(obs) == str # input image path
+        out = self.model.respond(prompt, obs)
+        out = out.replace("'",'"')
+        out = out.replace('\"s ', "\'s ")
+        out = out.replace('```json', '').replace('```', '')
+        logger.debug(f"Model Output:\n{out}\n")
+        action = self.json_to_action(out)
+        self.planner_steps += 1
+        return action, out
     
     def act(self, observation, user_instruction, avg_obj_coord, task_variation):
         if type(observation) == dict:
@@ -380,6 +395,9 @@ class ManipPlanner():
                 else:
                     self.episode_messages = self.get_message(obs, full_example_prompt, task_prompt)
         
+        if self.model_type == 'custom':
+            return self.act_custom(full_example_prompt + task_prompt, obs) 
+
         for entry in self.episode_messages:
             for content_item in entry["content"]:
                 if content_item["type"] == "text":

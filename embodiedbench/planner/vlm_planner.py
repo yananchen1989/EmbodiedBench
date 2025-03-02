@@ -21,7 +21,10 @@ class VLMPlanner():
         self.chat_history = chat_history # whether to includ all the chat history for prompting
         self.set_actions(actions)
         self.model_type = model_type
-        self.model = RemoteModel(model_name, model_type, language_only, tp=tp)
+        if model_type == 'custom':
+            self.model = CustomModel(model_name, language_only)
+        else:
+            self.model = RemoteModel(model_name, model_type, language_only, tp=tp)
 
         self.use_feedback = use_feedback
         self.multistep = multistep
@@ -174,6 +177,19 @@ class VLMPlanner():
             action = -1
         return action
 
+    
+        
+    def act_custom(self, prompt, obs):
+        assert type(obs) == str # input image path
+        out = self.model.respond(prompt, obs)
+        out = out.replace("'",'"')
+        out = out.replace('\"s ', "\'s ")
+        out = out.replace('```json', '').replace('```', '')
+        logger.debug(f"Model Output:\n{out}\n")
+        action = self.json_to_action(out)
+        self.planner_steps += 1
+        return action, out
+
 
     def act(self, observation, user_instruction):
         if type(observation) == dict:
@@ -183,9 +199,12 @@ class VLMPlanner():
         
         prompt = self.process_prompt(user_instruction, prev_act_feedback=self.episode_act_feedback)
         # some models do not support json scheme, add style into prompt
-        if 'claude' in self.model_name or 'InternVL' in self.model_name or 'Qwen2-VL-72B-Instruct' in self.model_name:
+        if 'claude' in self.model_name or 'InternVL' in self.model_name or 'Qwen2-VL-72B-Instruct' in self.model_name or 'microsoft/Phi-4' in self.model_name:
             prompt = prompt + template_lang if self.language_only else prompt + template
-        
+
+        if self.model_type == 'custom':
+            return self.act_custom(prompt, obs) 
+
         if len(self.episode_messages) == 0:
              self.episode_messages = self.get_message(obs, prompt)
         else:
