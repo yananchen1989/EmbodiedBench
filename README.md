@@ -87,7 +87,7 @@ Our flexible configuration options enable in-depth experimentation with **visual
 **Note: we need to install three conda environments, one for EB-ALFRED and EB-Habitat, one for EB-Navigation, and one for EB-Manipulation. Please use ssh download instead of HTTP download to avoid error during git lfs pull.**
 
 Download repo
-```
+```bash
 git clone git@github.com:EmbodiedBench/EmbodiedBench.git
 cd EmbodiedBench
 ```
@@ -96,46 +96,46 @@ cd EmbodiedBench
 ```bash install.sh``` or manually run the provided commands. After completing the installation with `bash install.sh`, you will need to start the headless server and verify that each environment is properly set up.**
 
 1️⃣ Environment for ```Habitat and Alfred```
-```
+```bash
 conda env create -f conda_envs/environment.yaml 
 conda activate embench
 pip install -e .
 ```
 2️⃣ Environment for ```EB-Navigation```
-```
+```bash
 conda env create -f conda_envs/environment_eb-nav.yaml 
 conda activate embench_nav
 pip install -e .
 ```
 3️⃣ Environment for ```EB-Manipulation```
-```
+```bash
 conda env create -f conda_envs/environment_eb-man.yaml 
 conda activate embench_man
 pip install -e .
 ```
 
 **Note: EB-Alfred, EB-Habitat and EB-Manipulation require downloading large datasets from Hugging Face or GitHub repositories. Ensure Git LFS is properly initialized by running the following commands:**
-```
+```bash
 git lfs install
 git lfs pull
 ```
 
 ## Start Headless Server
 Please run startx.py script before running experiment on headless servers. The server should be started in another tmux window. We use X_DISPLAY id=1 by default.
-```
+```bash
 python -m embodiedbench.envs.eb_alfred.scripts.startx 1
 ```
 
 ## EB-Alfred
 Download dataset from huggingface.
-```
+```bash
 conda activate embench
 git clone https://huggingface.co/datasets/EmbodiedBench/EB-ALFRED
 mv EB-ALFRED embodiedbench/envs/eb_alfred/data/json_2.1.0
 ```
 Run the following code to ensure the EB-ALFRED environment is working correctly. `Remember to start headless server.`
 
-```
+```bash
 conda activate embench
 python -m embodiedbench.envs.eb_alfred.EBAlfEnv
 ```
@@ -144,7 +144,7 @@ python -m embodiedbench.envs.eb_alfred.EBAlfEnv
 
 - Install [Habitat-Sim](https://github.com/facebookresearch/habitat-sim) and [Habitat-Lab](https://github.com/facebookresearch/habitat-lab) via
 
- ```
+ ```bash
 conda activate embench
 conda install -y habitat-sim==0.3.0 withbullet  headless -c conda-forge -c aihabitat
 git clone -b 'v0.3.0' --depth 1 https://github.com/facebookresearch/habitat-lab.git ./habitat-lab
@@ -154,7 +154,7 @@ cd ..
  ```
 
 - Download YCB and ReplicaCAD dataset for the Language Rearrangement task. 
-```
+```bash
 conda install -y -c conda-forge git-lfs
 python -m habitat_sim.utils.datasets_download --uids rearrange_task_assets
 mv data embodiedbench/envs/eb_habitat
@@ -162,7 +162,7 @@ mv data embodiedbench/envs/eb_habitat
 After the above step, there should be a data folder under envs/eb_habitat.
 
 Run the following code to ensure the EB-Habitat environment is working correctly.
-```
+```bash
 conda activate embench
 python -m embodiedbench.envs.eb_habitat.EBHabEnv
 ```
@@ -170,7 +170,7 @@ python -m embodiedbench.envs.eb_habitat.EBHabEnv
 ## EB-Navigation
 
 Run the following code to ensure the EB-Navigation environment is working correctly.
-```
+```bash
 conda activate embench_nav
 python -m embodiedbench.envs.eb_navigation.EBNavEnv
 ```
@@ -229,14 +229,14 @@ python -m embodiedbench.envs.eb_manipulation.EBManEnv
 # 🚀 Quick Start
 ### Proprietary Models
 Before running evaluations, set up your environment variables if you plan to use proprietary models:
-```
+```bash
 export OPENAI_API_KEY="your_oai_api_key_here"
 export GEMINI_API_KEY="your_gemini_api_key_here"
 export ANTHROPIC_API_KEY="your_anpic_api_key_here"
 export DASHSCOPE_API_KEY="your_dashscope_api_here" # the official qwen apis
 ```
 To evaluate MLLMs in EmbodiedBench, activate the corresponding Conda environment and run:
-```
+```bash
 conda activate embench
 python -m embodiedbench.main env=eb-alf model_name=gpt-4o-mini exp_name='baseline'
 python -m embodiedbench.main env=eb-hab model_name=gpt-4o-mini exp_name='baseline'
@@ -282,7 +282,7 @@ We support two deployment methods for open-source models: **offline running** an
 #### **1️⃣ Offline Running**  
 For local execution, set `model_type=local` and adjust `tp` (tensor parallelism) based on GPU memory.  
 - A rough guideline: For 48GB GPUs, use `tp = ceil(model size (in B) / 10)`.  
-```
+```bash
 conda activate embench
 python -m embodiedbench.main env=eb-alf model_name=Qwen/Qwen2-VL-7B-Instruct model_type=local exp_name='baseline' tp=1
 python -m embodiedbench.main env=eb-hab model_name=OpenGVLab/InternVL2_5-8B model_type=local exp_name='baseline' tp=1
@@ -297,7 +297,7 @@ python -m embodiedbench.main env=eb-man model_name=meta-llama/Llama-3.2-11B-Visi
 
 #### **2️⃣ Online Model Serving (Recommended)**  
 Model serving decouples **model execution** from **evaluation**, allowing flexible deployment via API calls.  
-```
+```bash
 ## Step 0, create an environment for lmdeploy
 conda env create -f conda_envs/lmdeploy.yaml
 conda activate lmdeploy
@@ -312,6 +312,22 @@ export remote_url='IP_address:port/v1' # set the address for access
 python -m embodiedbench.main env=eb-hab model_name=OpenGVLab/InternVL2_5-8B exp_name='baseline' 
 ```
 You can also refer to [LMDeploy](https://github.com/InternLM/lmdeploy) for more details.
+
+
+#### **3️⃣ Online Serving for Unsupported Models**  
+Lmdeploy often lags behind the release of new models. To address this, we offer a more flexible and dynamic model serving approach. Follow these steps to deploy and evaluate new models:
+
+```bash
+## 1. Modify the code and hyperparameters in `server.py` according to your requirements.
+## 2. Start the server and install any necessary packages:
+pip install flask
+python server.py
+
+## 3. Run the evaluation in custom mode:
+export server_url="IP_address:port/process"
+python -m embodiedbench.main env=eb-hab model_name='microsoft/Phi-4-multimodal-instruct' model_type='custom' exp_name='new_model'
+```
+
 
 ## Docker
 To be added.
