@@ -319,9 +319,10 @@ Lmdeploy often lags behind the release of new models. To address this, we offer 
 
 ```bash
 ## 1. Modify the code and hyperparameters in `server.py` according to your requirements.
+## We now support "microsoft/Phi-4-multimodal-instruct", 'AIDC-AI/Ovis2-16B', 'AIDC-AI/Ovis2-34B', 'google/gemma-3-12b-it' 
 ## 2. Start the server and install any necessary packages:
 pip install flask
-python server.py
+CUDA_VISIBLE_DEVICES=${gpu_ids} python server.py
 
 ## 3. Run the evaluation in custom mode:
 export server_url="IP_address:port/process"
@@ -330,7 +331,11 @@ python -m embodiedbench.main env=eb-hab model_name='microsoft/Phi-4-multimodal-i
 
 
 ## Docker
-To be added.
+We have provided a docker file under the Docker folder. 
+
+
+# Update History
+- 2025.03.19, provide support for new MLLMs including "microsoft/Phi-4-multimodal-instruct", 'AIDC-AI/Ovis2-16B', 'AIDC-AI/Ovis2-34B', 'google/gemma-3-12b-it', fix some common generated JSON errors.
 
 
 

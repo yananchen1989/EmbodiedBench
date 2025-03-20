@@ -1,4 +1,5 @@
 import os
+import re
 import base64
 import copy
 from mimetypes import guess_type
@@ -13,7 +14,7 @@ The fields in above JSON follows the purpose below:
 1. reasoning_and_reflection is for summarizing the history of interactions and any available environmental feedback. Additionally, provide reasoning as to why the last action or plan failed and did not finish the task, \
 2. language_plan is for describing a list of actions to achieve the user instruction. Each action is started by the step number and the action name, \
 3. executable_plan is a list of actions needed to achieve the user instruction, with each action having an action ID and a name.
-!!! Please do not output any other thing more than the above-mentioned JSON, do not include ```json and ```!!!
+!!! When generating content for JSON strings, avoid using any contractions or abbreviated forms (like 's, 're, 've, 'll, 'd, n't) that use apostrophes. Instead, write out full forms (is, are, have, will, would, not) to prevent parsing errors in JSON. Please do not output any other thing more than the above-mentioned JSON, do not include ```json and ```!!!
 '''
 
 template = '''
@@ -24,7 +25,7 @@ The fields in above JSON follows the purpose below:
 3. language_plan is for describing a list of actions to achieve the user instruction. Each action is started by the step number and the action name, 
 4. executable_plan is a list of actions needed to achieve the user instruction, with each action having an action ID and a name.
 5. keep your plan efficient and concise.
-!!! Please do not output any other thing more than the above-mentioned JSON, do not include ```json and ```!!!.
+!!! When generating content for JSON strings, avoid using any contractions or abbreviated forms (like 's, 're, 've, 'll, 'd, n't) that use apostrophes. Instead, write out full forms (is, are, have, will, would, not) to prevent parsing errors in JSON. Please do not output any other thing more than the above-mentioned JSON, do not include ```json and ```!!!.
 '''
 
 template_lang_manip = '''\
@@ -33,7 +34,7 @@ The fields in above JSON follows the purpose below:
 1. reasoning_and_reflection: Reason about the overall plan that needs to be taken on the target objects, and reflect on the previous actions taken if available. 
 2. language_plan: A list of natural language actions to achieve the user instruction. Each language action is started by the step number and the language action name. 
 3. executable_plan: A list of discrete actions needed to achieve the user instruction, with each discrete action being a 7-dimensional discrete action.
-!!! Please do not output any other thing more than the above-mentioned JSON, do not include ```json and ```!!!.
+!!! When generating content for JSON strings, avoid using any contractions or abbreviated forms (like 's, 're, 've, 'll, 'd, n't) that use apostrophes. Instead, write out full forms (is, are, have, will, would, not) to prevent parsing errors in JSON. Please do not output any other thing more than the above-mentioned JSON, do not include ```json and ```!!!.
 '''
 
 template_manip = '''\
@@ -44,8 +45,33 @@ The fields in above JSON follows the purpose below:
 3. language_plan: A list of natural language actions to achieve the user instruction. Each language action is started by the step number and the language action name. 
 4. executable_plan: A list of discrete actions needed to achieve the user instruction, with each discrete action being a 7-dimensional discrete action.
 5. keep your plan efficient and concise.
-!!! Please do not output any other thing more than the above-mentioned JSON, do not include ```json and ```!!!.
+!!! When generating content for JSON strings, avoid using any contractions or abbreviated forms (like 's, 're, 've, 'll, 'd, n't) that use apostrophes. Instead, write out full forms (is, are, have, will, would, not) to prevent parsing errors in JSON. Please do not output any other thing more than the above-mentioned JSON, do not include ```json and ```!!!.
 '''
+
+def fix_json(json_str):
+    """
+    Locates the substring between the keys "reasoning_and_reflection" and "language_plan"
+    and escapes any inner double quotes that are not already escaped.
+    
+    The regex uses a positive lookahead to stop matching when reaching the delimiter for the next key.
+    """
+    # Pattern explanation:
+    # 1. ("reasoning_and_reflection"\s*:\s*") matches the key and the opening quote.
+    # 2. (?P<value>.*?) lazily captures everything in a group named 'value'.
+    # 3. (?=",\s*"language_plan") is a positive lookahead that stops matching before the closing quote
+    #    that comes before the "language_plan" key.
+    pattern = r'("reasoning_and_reflection"\s*:\s*")(?P<value>.*?)(?=",\s*"language_plan")'
+    
+    def replacer(match):
+        prefix = match.group(1)            # Contains the key and the opening quote.
+        value = match.group("value")         # The raw value that might contain unescaped quotes.
+        # Escape any double quote that is not already escaped.
+        fixed_value = re.sub(r'(?<!\\)"', r'\\"', value)
+        return prefix + fixed_value
+
+    # Use re.DOTALL so that newlines in the value are included.
+    fixed_json = re.sub(pattern, replacer, json_str, flags=re.DOTALL)
+    return fixed_json
 
 
 class ExecutableAction_1(typing.TypedDict): 

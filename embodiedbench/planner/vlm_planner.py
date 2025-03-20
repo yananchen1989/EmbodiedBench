@@ -6,8 +6,9 @@ import numpy as np
 import cv2
 import json
 from embodiedbench.planner.planner_config.generation_guide import llm_generation_guide, vlm_generation_guide
-from embodiedbench.planner.planner_utils import local_image_to_data_url, template, template_lang
+from embodiedbench.planner.planner_utils import local_image_to_data_url, template, template_lang, fix_json
 from embodiedbench.planner.remote_model import RemoteModel
+from embodiedbench.planner.custom_model import CustomModel
 from embodiedbench.main import logger
 
 class VLMPlanner():
@@ -182,9 +183,17 @@ class VLMPlanner():
     def act_custom(self, prompt, obs):
         assert type(obs) == str # input image path
         out = self.model.respond(prompt, obs)
-        out = out.replace("'",'"')
+        # fix common generated json errors
+        out = out.replace("'",'"') 
         out = out.replace('\"s ', "\'s ")
+        out = out.replace('\"re ', "\'re ")
+        out = out.replace('\"ll ', "\'ll ")
+        out = out.replace('\"t ', "\'t ")
+        out = out.replace('\"d ', "\'d ")
+        out = out.replace('\"m ', "\'m ")
+        out = out.replace('\"ve ', "\'ve ")
         out = out.replace('```json', '').replace('```', '')
+        out = fix_json(out)
         logger.debug(f"Model Output:\n{out}\n")
         action = self.json_to_action(out)
         self.planner_steps += 1
@@ -199,7 +208,7 @@ class VLMPlanner():
         
         prompt = self.process_prompt(user_instruction, prev_act_feedback=self.episode_act_feedback)
         # some models do not support json scheme, add style into prompt
-        if 'claude' in self.model_name or 'InternVL' in self.model_name or 'Qwen2-VL-72B-Instruct' in self.model_name or 'microsoft/Phi-4' in self.model_name:
+        if 'claude' in self.model_name or 'InternVL' in self.model_name or 'Qwen2-VL' in self.model_name or self.model_type == 'custom':
             prompt = prompt + template_lang if self.language_only else prompt + template
 
         if self.model_type == 'custom':
@@ -232,6 +241,7 @@ class VLMPlanner():
                 out = self.model.respond(self.episode_messages)
             except Exception as e:
                 print("An unexpected error occurred:", e)
+
                 if self.model_type != 'local':
                     time.sleep(60)
                 else:
