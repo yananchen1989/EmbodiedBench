@@ -10,6 +10,7 @@ import logging
 from mimetypes import guess_type
 from embodiedbench.envs.eb_manipulation.eb_man_utils import ROTATION_RESOLUTION, VOXEL_SIZE
 from embodiedbench.planner.remote_model import RemoteModel
+from embodiedbench.planner.custom_model import CustomModel
 from embodiedbench.planner.planner_utils import local_image_to_data_url, template_manip, template_lang_manip
 from embodiedbench.main import logger
 
@@ -33,7 +34,7 @@ class ManipPlanner():
         if model_type == 'custom':
             self.model = CustomModel(model_name, language_only)
         else:
-            self.model = RemoteModel(model_name, model_type, language_only, tp=tp, 'manip')
+            self.model = RemoteModel(model_name, model_type, language_only, tp=tp, task_type='manip')
 
         self.planner_steps = 0
         self.output_json_error = 0
@@ -360,7 +361,7 @@ class ManipPlanner():
         out = out.replace('\"s ', "\'s ")
         out = out.replace('```json', '').replace('```', '')
         logger.debug(f"Model Output:\n{out}\n")
-        action = self.json_to_action(out)
+        action, _ = self.json_to_action(out)
         self.planner_steps += 1
         return action, out
     
@@ -396,7 +397,7 @@ class ManipPlanner():
                     self.episode_messages = self.get_message(obs, full_example_prompt, task_prompt)
         
         if self.model_type == 'custom':
-            return self.act_custom(full_example_prompt + task_prompt, obs) 
+            return self.act_custom(full_example_prompt + task_prompt + "\n\n" + template_manip, obs[0]) 
 
         for entry in self.episode_messages:
             for content_item in entry["content"]:
