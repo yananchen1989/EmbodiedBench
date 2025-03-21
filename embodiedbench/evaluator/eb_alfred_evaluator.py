@@ -1,4 +1,4 @@
-import os
+import os,sys
 import numpy as np
 from tqdm import tqdm
 import time
@@ -46,6 +46,8 @@ class EB_AlfredEvaluator():
         if type(valid_eval_sets) == list and len(valid_eval_sets) == 0:
             valid_eval_sets = ValidEvalSets
 
+        print('valid_eval_sets:', valid_eval_sets)
+
         for eval_set in valid_eval_sets:
             if self.env is not None:
                 self.env.close()
@@ -83,73 +85,77 @@ class EB_AlfredEvaluator():
             self.planner.set_actions(self.env.language_skill_set)
             done = False
             while not done:
-                try: 
-                    action, reasoning = self.planner.act(img_path, user_instruction)
-                    print(f"Planner Output Action: {action}")
-                    if action == -2: # empty plan stop here
-                        episode_info['empty_plan'] = 1
-                        self.env.episode_log.append({
-                            'last_action_success': 0.0,
-                            'action_id': -2,
-                            'action_description': 'empty plan',
-                            'reasoning': reasoning,
-                        })
-                        info = {
-                            'task_success': episode_info.get('task_success', 0),
-                            'task_progress': episode_info.get("task_progress", 0),
-                            'env_step': self.env._current_step,
-                        }
-                        break 
-                    if action == -1:
-                        self.env._cur_invalid_actions += 1
-                        episode_info['reward'].append(-1)
-                        episode_info['num_invalid_actions'] += 1
-                        self.env.episode_log.append({
-                            'last_action_success': 0.0,
-                            'action_id': -1,
-                            'action_description': 'invalid action',
-                            'reasoning': reasoning,
-                        })
-                        info = {
-                            'task_success': episode_info.get('task_success', 0),
-                            'task_progress': episode_info.get("task_progress", 0),
-                            'env_step': self.env._current_step,
-                        }
-                        if self.env._cur_invalid_actions >= self.env._max_invalid_actions:
-                            break
-                        continue
-                    
-                    # mutiple actions
-                    if type(action) == list:
-                        for action_single in action[:min(self.env._max_episode_steps - self.env._current_step, len(action))]:
-                            obs, reward, done, info = self.env.step(action_single, reasoning=reasoning)
-                            action_str = action_single if type(action_single) == str else self.env.language_skill_set[action_single]
-                            print(f"Executed action: {action_str}, Task success: {info['task_success']}")
-                            logger.debug(f"reward: {reward}")
-                            logger.debug(f"terminate: {done}\n")
-                            self.planner.update_info(info)
-                            img_path = self.env.save_image(obs)
-                            episode_info['reward'].append(reward)
-                            episode_info['num_invalid_actions'] += (info['last_action_success'] == 0)
-                            if done or not info['last_action_success']:
-                                # stop or replanning
-                                print("Invalid action or task complete. If invalid then Replanning.")
-                                break
-                    else: # single action
-                        obs, reward, done, info = self.env.step(action, reasoning=reasoning)
-                        action_str = action if type(action) == str else self.env.language_skill_set[action]
+                # try: 
+                action, reasoning = self.planner.act(img_path, user_instruction)
+                print(f"Planner Output Action: {action}")
+                if action == -2: # empty plan stop here
+                    episode_info['empty_plan'] = 1
+                    self.env.episode_log.append({
+                        'last_action_success': 0.0,
+                        'action_id': -2,
+                        'action_description': 'empty plan',
+                        'reasoning': reasoning,
+                    })
+                    info = {
+                        'task_success': episode_info.get('task_success', 0),
+                        'task_progress': episode_info.get("task_progress", 0),
+                        'env_step': self.env._current_step,
+                    }
+                    break 
+                if action == -1:
+                    self.env._cur_invalid_actions += 1
+                    episode_info['reward'].append(-1)
+                    episode_info['num_invalid_actions'] += 1
+                    self.env.episode_log.append({
+                        'last_action_success': 0.0,
+                        'action_id': -1,
+                        'action_description': 'invalid action',
+                        'reasoning': reasoning,
+                    })
+                    info = {
+                        'task_success': episode_info.get('task_success', 0),
+                        'task_progress': episode_info.get("task_progress", 0),
+                        'env_step': self.env._current_step,
+                    }
+                    if self.env._cur_invalid_actions >= self.env._max_invalid_actions:
+                        break
+                    continue
+                
+                # mutiple actions
+                if type(action) == list:
+                    for action_single in action[:min(self.env._max_episode_steps - self.env._current_step, len(action))]:
+                        obs, reward, done, info = self.env.step(action_single, reasoning=reasoning)
+                        action_str = action_single if type(action_single) == str else self.env.language_skill_set[action_single]
                         print(f"Executed action: {action_str}, Task success: {info['task_success']}")
                         logger.debug(f"reward: {reward}")
                         logger.debug(f"terminate: {done}\n")
-                        
                         self.planner.update_info(info)
                         img_path = self.env.save_image(obs)
                         episode_info['reward'].append(reward)
                         episode_info['num_invalid_actions'] += (info['last_action_success'] == 0)
+                        if done or not info['last_action_success']:
+                            # stop or replanning
+                            print("Invalid action or task complete. If invalid then Replanning.")
+                            break
+                else: # single action
+                    obs, reward, done, info = self.env.step(action, reasoning=reasoning)
+                    action_str = action if type(action) == str else self.env.language_skill_set[action]
+                    print(f"Executed action: {action_str}, Task success: {info['task_success']}")
+                    logger.debug(f"reward: {reward}")
+                    logger.debug(f"terminate: {done}\n")
+                    
+                    self.planner.update_info(info)
+                    img_path = self.env.save_image(obs)
+                    episode_info['reward'].append(reward)
+                    episode_info['num_invalid_actions'] += (info['last_action_success'] == 0)
                 
-                except Exception as e: 
-                    print(e)
-                    time.sleep(30)
+                print(f'\neval_set:{self.eval_set} curr_episode:{self.env._current_episode_num} step:{self.env._current_step}\n')
+
+                # if step == 2:
+                #     sys.exit()
+                # except Exception as e: 
+                #     print(e)
+                #     time.sleep(5)
 
             # evaluation metrics
             episode_info['instruction'] = user_instruction
@@ -166,50 +172,53 @@ class EB_AlfredEvaluator():
             self.env.save_episode_log()
             self.save_episode_metric(episode_info)
             progress_bar.update()
+            print('api cost $:', self.planner.planner_cost)
+            print('\n'+ '-'*20 + '\n')
 
 
-if __name__ == '__main__':
-    import argparse
-    def parse_arguments():
-        parser = argparse.ArgumentParser(description='Change configuration parameters.')
-        parser.add_argument('--model_name', type=str, help='Name of the model.')
-        parser.add_argument('--n_shots', type=int, help='Number of examples')
-        parser.add_argument('--down_sample_ratio', type=float, help='Down sample ratio.')
-        parser.add_argument('--model_type', type=str, help='Type of the model.')
-        parser.add_argument('--language_only', type=int, help='Set to True for language only mode.')
-        parser.add_argument('--exp_name', type=str, help='Name of the experiment.')
-        parser.add_argument('--chat_history', type=int, help='Set to True to enable chat history.')
-        parser.add_argument('--detection_box', type=int, help='Set to True to enable detection.')
-        parser.add_argument('--eval_sets', type=lambda s: s.split(','), help='Comma-separated list of evaluation sets.')
-        parser.add_argument('--multistep', type=int, help='Number of steps for multi-step reasoning.')
-        parser.add_argument('--resolution', type=int, help='Resolution for processing.')
-        parser.add_argument('--env_feedback', type=int, help='Set to True to enable environment feedback.')
-        parser.add_argument('--tp', type=int, help='number of tensor parallel splits of the model parameters')
-        return parser.parse_args()
+
+# if __name__ == '__main__':
+#     import argparse
+#     def parse_arguments():
+#         parser = argparse.ArgumentParser(description='Change configuration parameters.')
+#         parser.add_argument('--model_name', type=str, help='Name of the model.')
+#         parser.add_argument('--n_shots', type=int, help='Number of examples')
+#         parser.add_argument('--down_sample_ratio', type=float, help='Down sample ratio.')
+#         parser.add_argument('--model_type', type=str, help='Type of the model.')
+#         parser.add_argument('--language_only', type=int, help='Set to True for language only mode.')
+#         parser.add_argument('--exp_name', type=str, help='Name of the experiment.')
+#         parser.add_argument('--chat_history', type=int, help='Set to True to enable chat history.')
+#         parser.add_argument('--detection_box', type=int, help='Set to True to enable detection.')
+#         parser.add_argument('--eval_sets', type=lambda s: s.split(','), help='Comma-separated list of evaluation sets.')
+#         parser.add_argument('--multistep', type=int, help='Number of steps for multi-step reasoning.')
+#         parser.add_argument('--resolution', type=int, help='Resolution for processing.')
+#         parser.add_argument('--env_feedback', type=int, help='Set to True to enable environment feedback.')
+#         parser.add_argument('--tp', type=int, help='number of tensor parallel splits of the model parameters')
+#         return parser.parse_args()
 
 
-    config = {
-        'model_name': 'gpt-4o-mini', # 'Qwen/Qwen2-VL-7B-Instruct',
-        'n_shots': 10,
-        'down_sample_ratio': 1.0,
-        'model_type': 'remote', # 'local', 
-        'language_only': 0,
-        'exp_name': 'vlm_10shots_imgsize500',
-        'chat_history': 0, 
-        'detection_box': 0,
-        'eval_sets': ['base'], 
-        'selected_indexes': [], 
-        'multistep':0, 
-        'resolution': 500, 
-        'env_feedback': 1,
-        'tp': 1,
-    }
+#     config = {
+#         'model_name': 'gpt-4o-mini', # 'Qwen/Qwen2-VL-7B-Instruct',
+#         'n_shots': 10,
+#         'down_sample_ratio': 1.0,
+#         'model_type': 'remote', # 'local', 
+#         'language_only': 0,
+#         'exp_name': 'vlm_10shots_imgsize500',
+#         'chat_history': 0, 
+#         'detection_box': 0,
+#         'eval_sets': [], 
+#         'selected_indexes': [], 
+#         'multistep':0, 
+#         'resolution': 500, 
+#         'env_feedback': 1,
+#         'tp': 1,
+#     }
 
-    args = parse_arguments()
-    update_config_with_args(config, args)
+#     args = parse_arguments()
+#     update_config_with_args(config, args)
 
-    evaluator = EB_AlfredEvaluator(config)
-    evaluator.evaluate_main()
+#     evaluator = EB_AlfredEvaluator(config)
+#     evaluator.evaluate_main()
 
 
 

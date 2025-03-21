@@ -80,3 +80,16 @@ def main(cfg: DictConfig) -> None:
 
 if __name__ == "__main__":
     main()
+
+'''
+conda activate embench
+python -m embodiedbench.main env=eb-alf  
+python -m embodiedbench.main env=eb-hab  
+
+
+conda activate embench_nav
+python -m embodiedbench.main env=eb-nav 
+
+conda activate embench_man 
+python -m embodiedbench.main env=eb-man 
+'''

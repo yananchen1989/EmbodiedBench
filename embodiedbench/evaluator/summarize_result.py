@@ -30,7 +30,7 @@ def average_json_values(json_dir, target_file='*.json', output_file='summary_all
     
     averages = {key: values_sum[key] / counts[key] for key in values_sum}
     print('final results: ' )
-    print(averages)
+    print(json.dumps(averages, indent=4))
     with open(os.path.join(json_dir, output_file), 'w') as f:
         json.dump(averages, f, indent=4)
 

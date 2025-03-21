@@ -1,5 +1,5 @@
 # configs/EB-Navigation.yaml
-model_name: gpt-4o-mini
+model_name:  Qwen/Qwen2.5-VL-7B-Instruct # gpt-4o-mini Qwen/Qwen2.5-VL-7B-Instruct
 model_type: remote
 down_sample_ratio: 1
 language_only: False

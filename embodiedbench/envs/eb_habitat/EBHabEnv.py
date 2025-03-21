@@ -11,7 +11,7 @@ Dependencies:
 - numpy
 - PIL
 """
-import gym
+import gym,sys
 import os
 import time
 import json
@@ -36,7 +36,7 @@ from embodiedbench.envs.eb_habitat.utils import observations_to_image, merge_to_
 from embodiedbench.main import logger
 
 HABITAT_CONFIG_PATH = os.path.join(os.path.dirname(__file__), 'config/task/language_rearrangement.yaml')
-
+print('HABITAT_CONFIG_PATH:', HABITAT_CONFIG_PATH)
 
 ValidEvalSets = [
         'base', 'common_sense', 'complex_instruction', 
@@ -309,6 +309,7 @@ class EBHabEnv(gym.Env):
             folder = self.log_path + '/video'
             if not os.path.exists(folder):
                 os.makedirs(folder)
+            print('video saved path:', folder)
             video_writer = imageio.get_writer(os.path.join(folder, 'video_episode_{}_steps_{}.mp4'.format(self._current_episode_num, self._current_step)), fps=30)
             for data in self.episode_video:
                 video_writer.append_data(data)
@@ -329,22 +330,54 @@ if __name__ == '__main__':
     Example usage of the EBHabEnv environment.
     Demonstrates environment interaction with random actions.
     """
-    env = EBHabEnv(eval_set='base')
-    obs = env.reset()
-    print([(i, name) for i, name in enumerate(env.language_skill_set)])
-    for _ in range(30):
-        env.save_image(obs)
-        action = int(input('action id: ')) #env.action_space.sample()
-        if action in env.language_skill_set:
-            action = env.language_skill_set.index(action)
-        else:
-            action = int(action)
-            if action < 0:
-                break
 
-        obs_new, reward, done, info = env.step(action)
-        print(reward, done, info)
-        env.save_image(obs_new)
-        if done:
-            break
-    env.close()
+    ValidEvalSets = ['base', 'common_sense', 'complex_instruction', 'spatial_relationship', 'visual_appearance', 'long_horizon'] 
+    for eval_set in ValidEvalSets:
+        print(eval_set)
+        env = EBHabEnv(eval_set=eval_set)
+        print('action_space:', env.action_space)
+        print(len(env.skill_set))
+        print(len(env.language_skill_set))
+
+
+        # print('skill_set:')
+        # for ii in env.skill_set:
+        #     print(ii)
+        print('language_skill_set:')
+        for ii in env.language_skill_set:
+            print(ii)
+        print()
+        # sys.exit()
+        # for _ in range(50):
+        #     try:
+        #         obs = env.reset()
+        #         print(env._current_episode_num, env.episode_language_instruction)
+                
+        #         print()
+        #     except:
+        #         continue
+
+        env.close()
+        print()
+        
+    # sys.exit()
+
+
+    
+
+    # for _ in range(30):
+    #     env.save_image(obs)
+    #     action = int(input('action id: ')) #env.action_space.sample()
+    #     if action in env.language_skill_set:
+    #         action = env.language_skill_set.index(action)
+    #     else:
+    #         action = int(action)
+    #         if action < 0:
+    #             break
+
+    #     obs_new, reward, done, info = env.step(action)
+    #     print(reward, done, info)
+    #     env.save_image(obs_new)
+    #     if done:
+    #         break
+    # env.close()

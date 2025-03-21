@@ -4,7 +4,7 @@ import os
 import base64
 import anthropic
 import google.generativeai as genai
-from openai import OpenAI
+from openai import OpenAI,AzureOpenAI
 import typing_extensions as typing
 import lmdeploy
 from lmdeploy import pipeline, GenerationConfig, PytorchEngineConfig
@@ -30,74 +30,84 @@ class RemoteModel:
         self.language_only = language_only
         self.task_type = task_type
 
+        self.api_cost = 0
+
+
         if self.model_type == 'local':
             backend_config = PytorchEngineConfig(session_len=12000, dtype='float16', tp=tp)
             self.model = pipeline(self.model_name, backend_config=backend_config)
         else:
-            if "claude" in self.model_name:
-                self.model = anthropic.Anthropic(
-                    api_key=os.environ.get("ANTHROPIC_API_KEY"),
-                )
-            elif "gemini" in self.model_name:
-                self.model = OpenAI(
-                    api_key=os.environ.get("GEMINI_API_KEY"),
-                    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
-                )
-            elif "gpt" in self.model_name:
-                self.model = OpenAI()
-            elif 'qwen' in self.model_name:
-                self.model = OpenAI(
-                    api_key=os.getenv("DASHSCOPE_API_KEY"),
-                    base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
-                )
-            elif "Qwen2-VL" in self.model_name:
-                self.model = OpenAI(base_url = remote_url)
-            elif "Llama-3.2-11B-Vision-Instruct" in self.model_name:
-                self.model = OpenAI(base_url = remote_url)
-            elif "OpenGVLab/InternVL" in self.model_name:
-                self.model = OpenAI(base_url = remote_url)
-            elif "meta-llama/Llama-3.2-90B-Vision-Instruct" in self.model_name:
-                self.model = OpenAI(base_url = remote_url)
-            elif "90b-vision-instruct" in self.model_name: # you can use fireworks to inference
-                self.model = OpenAI(base_url='https://api.fireworks.ai/inference/v1',
-                                    api_key=os.environ.get("firework_API_KEY"))
+            # if "claude" in self.model_name:
+            #     self.model = anthropic.Anthropic(
+            #         api_key=os.environ.get("ANTHROPIC_API_KEY"),
+            #     )
+            # elif "gemini" in self.model_name:
+            #     self.model = OpenAI(
+            #         api_key=os.environ.get("GEMINI_API_KEY"),
+            #         base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+            #     )
+            if self.model_name.startswith("gpt"):
+                # self.model = OpenAI()
+                self.model = AzureOpenAI(
+                            azure_endpoint = "https://responsible-ai.openai.azure.com/", 
+                            api_key= os.environ['AZURE_OPENAI_API_KEY'],  
+                            api_version= "2024-10-01-preview",
+                            )
+            # elif 'qwen' in self.model_name:
+            #     self.model = OpenAI(
+            #         api_key=os.getenv("DASHSCOPE_API_KEY"),
+            #         base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+            #     )
+            # elif "Qwen2-VL" in self.model_name:
+            #     self.model = OpenAI(base_url = remote_url)
+            # elif "Llama-3.2-11B-Vision-Instruct" in self.model_name:
+            #     self.model = OpenAI(base_url = remote_url)
+            # elif "OpenGVLab/InternVL" in self.model_name:
+            #     self.model = OpenAI(base_url = remote_url)
+            # elif "meta-llama/Llama-3.2-90B-Vision-Instruct" in self.model_name:
+            #     self.model = OpenAI(base_url = remote_url)
+            # elif "90b-vision-instruct" in self.model_name: # you can use fireworks to inference
+            #     self.model = OpenAI(base_url='https://api.fireworks.ai/inference/v1',
+            #                         api_key=os.environ.get("firework_API_KEY"))
             else:
-                try:
-                    self.model = OpenAI(base_url = remote_url)
-                except:
-                    raise ValueError(f"Unsupported model name: {model_name}")
+                from together import Together
+                self.model = Together()
+                # self.model = OpenAI(base_url = "http://10.225.68.29:1703/v1", api_key="yyy")
+                # except:
+                #     raise ValueError(f"Unsupported model name: {model_name}")
 
 
     def respond(self, message_history: list):
         if self.model_type == 'local':
             return self._call_local(message_history)
         else:
-            if "claude" in self.model_name:
-                return self._call_claude(message_history)
-            elif "gemini" in self.model_name:
-                return self._call_gemini(message_history)
-            elif "gpt" in self.model_name:
-                return self._call_gpt(message_history)
-            elif 'qwen' in self.model_name:
-                return self._call_gpt(message_history)
-            elif "Qwen2-VL-7B-Instruct" in self.model_name:
-                return self._call_qwen7b(message_history)
-            elif "Qwen2-VL-72B-Instruct" in self.model_name:
-                return self._call_qwen72b(message_history)
-            elif "Llama-3.2-11B-Vision-Instruct" in self.model_name:
-                return self._call_llama11b(message_history)
-            elif "meta-llama/Llama-3.2-90B-Vision-Instruct" in self.model_name:
-                return self._call_qwen72b(message_history)
-            elif "90b-vision-instruct" in self.model_name:
-                return self._call_llama90(message_history)
-            elif "OpenGVLab/InternVL" in self.model_name:
-                return self._call_intern38b(message_history)
-            # elif "OpenGVLab/InternVL2_5-38B" in self.model_name:
+            return self._call_gpt(message_history)
+            # if "claude" in self.model_name:
+            #     return self._call_claude(message_history)
+            # elif "gemini" in self.model_name:
+            #     return self._call_gemini(message_history)
+            # elif "gpt" in self.model_name:
+            #     return self._call_gpt(message_history)
+            # elif 'qwen' in self.model_name:
+            #     return self._call_gpt(message_history)
+            # elif "Qwen2-VL-7B-Instruct" in self.model_name:
+            #     return self._call_qwen7b(message_history)
+            # elif "Qwen2-VL-72B-Instruct" in self.model_name:
+            #     return self._call_qwen72b(message_history)
+            # elif "Llama-3.2-11B-Vision-Instruct" in self.model_name:
+            #     return self._call_llama11b(message_history)
+            # elif "meta-llama/Llama-3.2-90B-Vision-Instruct" in self.model_name:
+            #     return self._call_qwen72b(message_history)
+            # elif "90b-vision-instruct" in self.model_name:
+            #     return self._call_llama90(message_history)
+            # elif "OpenGVLab/InternVL" in self.model_name:
             #     return self._call_intern38b(message_history)
-            # elif "OpenGVLab/InternVL2_5-78B" in self.model_name:
-            #     return self._call_intern38b(message_history)
-            else:
-                raise ValueError(f"Unsupported model name: {self.model_name}")
+            # # elif "OpenGVLab/InternVL2_5-38B" in self.model_name:
+            # #     return self._call_intern38b(message_history)
+            # # elif "OpenGVLab/InternVL2_5-78B" in self.model_name:
+            # #     return self._call_intern38b(message_history)
+            # else:
+            #     raise ValueError(f"Unsupported model name: {self.model_name}")
 
     def _call_local(self, message_history: list):
         if self.task_type == 'manip':
@@ -187,7 +197,7 @@ class RemoteModel:
             max_tokens=max_completion_tokens
         )
         out = response.choices[0].message.content
-
+        self.api_cost += response.usage.prompt_tokens * 0.21666 / 1000000 + response.usage.completion_tokens * 0.8667 / 1000000
         return out
     
     def _call_qwen7b(self, message_history: list):

@@ -62,7 +62,9 @@ class EB_HabitatEvaluator():
             logger.info(f'Current eval set: {eval_set}')
             exp_name = f"{self.model_name.split('/')[-1]}_{self.config['exp_name']}/{eval_set}" if len(self.config['exp_name']) else f"{self.model_name.split('/')[-1]}/{eval_set}"
             self.env = EBHabEnv(eval_set=self.eval_set, down_sample_ratio=self.config['down_sample_ratio'], exp_name=exp_name,
-                                             start_epi_index=self.config.get('start_epi_index', 0), resolution=self.config.get('resolution', 500))
+                                start_epi_index=self.config.get('start_epi_index', 0), 
+                                resolution=self.config.get('resolution', 500),
+                                recording=self.config.get('recording', False)) 
 
             model_type = self.config.get('model_type', 'remote')
             self.planner = VLMPlanner(self.model_name, model_type, self.env.language_skill_set, self.system_prompt, examples, n_shot=self.config['n_shots'], obs_key='head_rgb',
@@ -87,76 +89,78 @@ class EB_HabitatEvaluator():
             self.planner.reset()
             done = False
             while not done:
-                try: 
-                    action, reasoning = self.planner.act(img_path, user_instruction)
-                    print(f"Planner Output Action: {action}")
+                # try: 
+                action, reasoning = self.planner.act(img_path, user_instruction)
+                print(f"Planner Output Action: {action}")
 
-                    if action == -2: # empty plan stop here
-                        episode_info['empty_plan'] = 1
-                        self.env.episode_log.append({
-                            'last_action_success': 0.0,
-                            'action_id': -2,
-                            'action_description': 'empty plan',
-                            'reasoning': reasoning,
-                        })
-                        info = {
-                            'task_success': episode_info.get('task_success', 0),
-                            'task_progress': episode_info.get("task_progress", 0),
-                            'subgoal_reward': episode_info.get("subgoal_reward", 0),
-                            'env_step': self.env._current_step,
-                        }
-                        break 
-                    if action == -1:
-                        self.env._cur_invalid_actions += 1
-                        episode_info['reward'].append(-1)
-                        episode_info['num_invalid_actions'] += 1
-                        self.env.episode_log.append({
-                            'last_action_success': 0.0,
-                            'action_id': -1,
-                            'action_description': 'invalid action',
-                            'reasoning': reasoning,
-                        })
-                        info = {
-                            'task_success': episode_info.get('task_success', 0),
-                            'task_progress': episode_info.get("task_progress", 0),
-                            'subgoal_reward': episode_info.get("subgoal_reward", 0),
-                            'env_step': self.env._current_step,
-                        }
-                        if self.env._cur_invalid_actions >= self.env._max_invalid_actions:
-                            break
-                        continue
-                    # multiple actions
-                    if type(action) == list:
-                        for action_single in action[:min(self.env._max_episode_steps - self.env._current_step, len(action))]:
-                            obs, reward, done, info = self.env.step(action_single, reasoning=reasoning)
-                            action_str = action_single if type(action_single) == str else self.env.language_skill_set[action_single]
-                            print(f"Executed action: {action_str}, Task success: {info['task_success']}")
-                            logger.debug(f"reward: {reward}")
-                            logger.debug(f"terminate: {done}\n")
-                            
-                            self.planner.update_info(info)
-                            img_path = self.env.save_image(obs)
-                            episode_info['reward'].append(reward)
-                            episode_info['num_invalid_actions'] += (info['last_action_success'] == 0)
-                            if done or info['last_action_success'] == 0:
-                                # stop or replanning
-                                print("Invalid action or task complete. If invalid then Replanning.")
-                                break
-                    else:
-                        obs, reward, done, info = self.env.step(action, reasoning=reasoning)
-                        action_str = action if type(action) == str else self.env.language_skill_set[action]
+                if action == -2: # empty plan stop here
+                    episode_info['empty_plan'] = 1
+                    self.env.episode_log.append({
+                        'last_action_success': 0.0,
+                        'action_id': -2,
+                        'action_description': 'empty plan',
+                        'reasoning': reasoning,
+                    })
+                    info = {
+                        'task_success': episode_info.get('task_success', 0),
+                        'task_progress': episode_info.get("task_progress", 0),
+                        'subgoal_reward': episode_info.get("subgoal_reward", 0),
+                        'env_step': self.env._current_step,
+                    }
+                    break 
+                if action == -1:
+                    self.env._cur_invalid_actions += 1
+                    episode_info['reward'].append(-1)
+                    episode_info['num_invalid_actions'] += 1
+                    self.env.episode_log.append({
+                        'last_action_success': 0.0,
+                        'action_id': -1,
+                        'action_description': 'invalid action',
+                        'reasoning': reasoning,
+                    })
+                    info = {
+                        'task_success': episode_info.get('task_success', 0),
+                        'task_progress': episode_info.get("task_progress", 0),
+                        'subgoal_reward': episode_info.get("subgoal_reward", 0),
+                        'env_step': self.env._current_step,
+                    }
+                    if self.env._cur_invalid_actions >= self.env._max_invalid_actions:
+                        break
+                    continue
+                # multiple actions
+                if type(action) == list:
+                    for action_single in action[:min(self.env._max_episode_steps - self.env._current_step, len(action))]:
+                        obs, reward, done, info = self.env.step(action_single, reasoning=reasoning)
+                        action_str = action_single if type(action_single) == str else self.env.language_skill_set[action_single]
                         print(f"Executed action: {action_str}, Task success: {info['task_success']}")
                         logger.debug(f"reward: {reward}")
                         logger.debug(f"terminate: {done}\n")
-                            
+                        
                         self.planner.update_info(info)
                         img_path = self.env.save_image(obs)
                         episode_info['reward'].append(reward)
                         episode_info['num_invalid_actions'] += (info['last_action_success'] == 0)
-                
-                except Exception as e: 
-                    print(e)
-                    time.sleep(30)
+                        if done or info['last_action_success'] == 0:
+                            # stop or replanning
+                            print("Invalid action or task complete. If invalid then Replanning.")
+                            break
+                else:
+                    obs, reward, done, info = self.env.step(action, reasoning=reasoning)
+                    action_str = action if type(action) == str else self.env.language_skill_set[action]
+                    print(f"Executed action: {action_str}, Task success: {info['task_success']}")
+                    logger.debug(f"reward: {reward}")
+                    logger.debug(f"terminate: {done}\n")
+                        
+                    self.planner.update_info(info)
+                    img_path = self.env.save_image(obs)
+                    episode_info['reward'].append(reward)
+                    episode_info['num_invalid_actions'] += (info['last_action_success'] == 0)
+            
+                # except Exception as e: 
+                #     print(e)
+                #     time.sleep(30)
+
+                print(f'\neval_set:{self.eval_set} curr_episode:{self.env._current_episode_num} step:{self.env._current_step}\n')
 
             # evaluation metrics
             episode_info['instruction'] = user_instruction
@@ -176,52 +180,52 @@ class EB_HabitatEvaluator():
             progress_bar.update()
 
 
-if __name__ == '__main__':
-    import argparse
-    def parse_arguments():
-        parser = argparse.ArgumentParser(description='Change configuration parameters.')
-        parser.add_argument('--model_name', type=str, help='Name of the model.')
-        parser.add_argument('--n_shots', type=int, help='Number of examples')
-        parser.add_argument('--down_sample_ratio', type=float, help='Down sample ratio.')
-        parser.add_argument('--model_type', type=str, help='Type of the model.')
-        parser.add_argument('--language_only', type=int, help='Set to True for language only mode.')
-        parser.add_argument('--exp_name', type=str, help='Name of the experiment.')
-        parser.add_argument('--chat_history', type=int, help='Set to True to enable chat history.')
-        parser.add_argument('--eval_sets', type=lambda s: s.split(','), help='Comma-separated list of evaluation sets.')
-        parser.add_argument('--start_epi_index', type=int, help='Starting episode index.')
-        parser.add_argument('--multistep', type=int, help='Number of steps for multi-step reasoning.')
-        parser.add_argument('--resolution', type=int, help='Resolution for processing.')
-        parser.add_argument('--env_feedback', type=int, help='Set to True to enable environment feedback.')
-        parser.add_argument('--tp', type=int, help='number of tensor parallel splits of the model parameters')
-        return parser.parse_args()
+# if __name__ == '__main__':
+#     import argparse
+#     def parse_arguments():
+#         parser = argparse.ArgumentParser(description='Change configuration parameters.')
+#         parser.add_argument('--model_name', type=str, help='Name of the model.')
+#         parser.add_argument('--n_shots', type=int, help='Number of examples')
+#         parser.add_argument('--down_sample_ratio', type=float, help='Down sample ratio.')
+#         parser.add_argument('--model_type', type=str, help='Type of the model.')
+#         parser.add_argument('--language_only', type=int, help='Set to True for language only mode.')
+#         parser.add_argument('--exp_name', type=str, help='Name of the experiment.')
+#         parser.add_argument('--chat_history', type=int, help='Set to True to enable chat history.')
+#         parser.add_argument('--eval_sets', type=lambda s: s.split(','), help='Comma-separated list of evaluation sets.')
+#         parser.add_argument('--start_epi_index', type=int, help='Starting episode index.')
+#         parser.add_argument('--multistep', type=int, help='Number of steps for multi-step reasoning.')
+#         parser.add_argument('--resolution', type=int, help='Resolution for processing.')
+#         parser.add_argument('--env_feedback', type=int, help='Set to True to enable environment feedback.')
+#         parser.add_argument('--tp', type=int, help='number of tensor parallel splits of the model parameters')
+#         return parser.parse_args()
 
-    config = {
-        'model_name': 'gpt-4o-mini',  # 'Qwen/Qwen2-VL-7B-Instruct', 
-        'n_shots': 10,
-        'down_sample_ratio': 1.0, 
-        'model_type': 'remote', # 'local'
-        'language_only': 0,
-        'exp_name': 'vlm_10shots_imgsize500',
-        'chat_history': 0,  
-        'start_epi_index': 0,
-        'eval_sets': ['base', 'common_sense', 'complex_instruction', 'spatial_relationship',  'visual_appearance' , 'long_horizon'],
-        'multistep':0, 
-        'resolution': 500, 
-        'env_feedback': 1,
-        'tp': 1,
-    }
-    args = parse_arguments()
-    update_config_with_args(config, args)
+#     config = {
+#         'model_name': 'gpt-4o-mini',  # 'Qwen/Qwen2-VL-7B-Instruct', 
+#         'n_shots': 10,
+#         'down_sample_ratio': 1.0, 
+#         'model_type': 'remote', # 'local'
+#         'language_only': 0,
+#         'exp_name': 'vlm_10shots_imgsize500',
+#         'chat_history': 0,  
+#         'start_epi_index': 0,
+#         'eval_sets': ['base', 'common_sense', 'complex_instruction', 'spatial_relationship',  'visual_appearance' , 'long_horizon'],
+#         'multistep':0, 
+#         'resolution': 500, 
+#         'env_feedback': 1,
+#         'tp': 1,
+#     }
+#     args = parse_arguments()
+#     update_config_with_args(config, args)
 
-    evaluator = EB_HabitatEvaluator(config)
-    evaluator.evaluate_main()
+#     evaluator = EB_HabitatEvaluator(config)
+#     evaluator.evaluate_main()
 
-    try:
-        os.unlink('data')
-        print(f"The symbolic link {link_path} has been successfully removed.")
-    except FileNotFoundError:
-        print(f"Error: The symbolic link {link_path} does not exist.")
-    except OSError as e:
-        print(f"Error: {e}")
+#     try:
+#         os.unlink('data')
+#         print(f"The symbolic link {link_path} has been successfully removed.")
+#     except FileNotFoundError:
+#         print(f"Error: The symbolic link {link_path} does not exist.")
+#     except OSError as e:
+#         print(f"Error: {e}")
 
 

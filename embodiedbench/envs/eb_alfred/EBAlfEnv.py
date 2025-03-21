@@ -11,7 +11,7 @@ Dependencies:
 - PIL
 """
 
-import os
+import os,random,sys
 import time
 import gym
 import json
@@ -27,7 +27,7 @@ from embodiedbench.envs.eb_alfred.gen import constants
 from embodiedbench.main import logger
 
 # global information
-X_DISPLAY = '1'
+X_DISPLAY = '0'
 ALFRED_SPLIT_PATH = os.path.join(os.path.dirname(__file__), 'data/splits/splits.json')
 ALFRED_REWARD_PATH = os.path.join(os.path.dirname(__file__), 'models/config/rewards.json')
 ALFRED_DATASET_PATH = os.path.join(os.path.dirname(__file__), 'data/json_2.1.0')
@@ -108,6 +108,8 @@ class EBAlfEnv(gym.Env):
         assert eval_set in ValidEvalSets
         self.down_sample_ratio = down_sample_ratio
         self.dataset = self._load_dataset(eval_set)
+        print('dataset overall size:', len(self.dataset))
+
         if len(selected_indexes):
             self.dataset = [self.dataset[i] for i in selected_indexes]
         
@@ -120,7 +122,7 @@ class EBAlfEnv(gym.Env):
         self._current_step = 0
         self._max_episode_steps = 30
         self._cur_invalid_actions = 0
-        self._max_invalid_actions = 10
+        self._max_invalid_actions = 5 # yanan
         self._episode_start_time = 0
         self.episode_log = []
         
@@ -215,6 +217,7 @@ class EBAlfEnv(gym.Env):
         with open(self.data_path) as f:
             dataset_split = json.load(f)
         dataset = dataset_split[eval_set]
+        random.shuffle(dataset)
         if 0 <= self.down_sample_ratio < 1:
             select_every = round(1 / self.down_sample_ratio)
             dataset = dataset[0:len(dataset):select_every]
@@ -413,7 +416,7 @@ if __name__ == "__main__":
     Example usage of the EBAlfEnv environment.
     Demonstrates environment interaction with random actions.
     """
-    env = EBAlfEnv(eval_set='base', down_sample_ratio=1.0, selected_indexes=[])
+    env = EBAlfEnv(eval_set='spatial', down_sample_ratio=1.0, selected_indexes=[])
     env.reset()
     print([(i, name) for i, name in enumerate(env.language_skill_set)])
     for _ in range(30):

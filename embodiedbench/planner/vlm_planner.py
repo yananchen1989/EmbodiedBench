@@ -247,7 +247,15 @@ class VLMPlanner():
                 else:
                     time.sleep(20)
                 out = self.model.respond(self.episode_messages)
-        logger.debug(f"Model Output:\n{out}\n")
+        # logger.debug(f"Model Output:\n{out}\n")
+
+        print('response from llm:')
+        print('\n'+'-'*20)
+        try:
+            print(json.dumps(eval(out), indent=2))
+        except:
+            print(out)
+        print('\n'+'-'*20)
 
         if self.chat_history:
             self.episode_messages.append(
